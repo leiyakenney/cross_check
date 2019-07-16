@@ -11,9 +11,5 @@ file_names = {
   teams: team_path,
   game_teams: game_teams_path
 }
-<<<<<<< HEAD
-stat_tracker = StatTracker.from_csv(file_names)
-=======
 stat_tracker = StatTracker.new(file_names)
->>>>>>> 35573327156542103a368c8e39c385ad446f32b4
 # binding.pry

@@ -1,22 +1,25 @@
 require 'csv'
 require 'pry'
+
 class StatTracker
 
-  def self.from_csv(files)
-    data = {}
-    files.each {|key, value|  data[key] = CSV.table(value)}
-    data
+  def initialize(games)
+    @games = games
   end
 
-  game_path = './data/dummy_data_game.csv'
-  team_path = './data/dummy_data_teams.csv'
-  game_teams_path = './data/dummy_data_game_team.csv'
+  def self.from_csv(files)
+    # games = files[:games]
+    games = CSV.foreach(files[:games],:headers => true) do |row|
+      binding.pry
+    end
+    games.each do |row|
+    end
+    StatTracker.new(games)
+  end
 
-  locations = {
-    games: game_path,
-    teams: team_path,
-    game_teams: game_teams_path
-  }
-  stat_data = StatTracker.from_csv(locations)
-  binding.pry
+  def highest_total_score
+    @games.max_by do |game|
+      (game.winning_score + game.losing_score)
+    end
+  end
 end

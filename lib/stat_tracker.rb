@@ -3,7 +3,7 @@ require 'pry'
 require './lib/game'
 require './lib/team'
 require './lib/game_teams'
-require './modules/game_stats.rb'
+require './modules/game_stats'
 
 class StatTracker
     include GameStats

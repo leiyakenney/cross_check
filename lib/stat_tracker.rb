@@ -1,28 +1,34 @@
 require 'csv'
 require 'pry'
+require './lib/game'
 
 class StatTracker
 
-  def initialize
+attr_reader :games, :teams
+
+  def initialize(file_names)
     @games = []
     @teams = []
-    @game_teams = []
-    @season = []
+    from_csv(file_names)
   end
 
-  def self.from_csv(files)
-    # games = files[:games]
-    games = CSV.foreach(files[:games],:headers => true) do |row|
+  def from_csv(file_names)
+    game_gen(file_names)
+  end
+
+  def game_gen(file_names)
+    game_gen = CSV.foreach(file_names[:games],:headers => true) do |row|
+      @games.push(Game.new(row))
+
       binding.pry
     end
-    games.each do |row|
-    end
-    StatTracker.new(games)
   end
 
-  def highest_total_score
-    @games.max_by do |game|
-      (game.winning_score + game.losing_score)
-    end
-  end
+
+
+  # def highest_total_score
+  #   @games.max_by do |game|
+  #     (game.winning_score + game.losing_score)
+  #   end
+  # end
 end

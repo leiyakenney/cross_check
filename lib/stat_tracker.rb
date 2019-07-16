@@ -19,8 +19,6 @@ attr_reader :games, :teams
   def game_gen(file_names)
     game_gen = CSV.foreach(file_names[:games],:headers => true) do |row|
       @games.push(Game.new(row))
-
-      binding.pry
     end
   end
 

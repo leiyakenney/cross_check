@@ -9,17 +9,15 @@ class StatTracker
 
   def self.from_csv(files)
     # games = files[:games]
-    games = CSV.foreach(files[:games],:headers => true) do |row|
+    CSV.foreach(files[:games],:headers => true) do |row|
+
       binding.pry
     end
-    games.each do |row|
-    end
-    StatTracker.new(games)
   end
 
-  def highest_total_score
-    @games.max_by do |game|
-      (game.winning_score + game.losing_score)
-    end
-  end
+  # def highest_total_score
+  #   @games.max_by do |game|
+  #     (game.winning_score + game.losing_score)
+  #   end
+  # end
 end

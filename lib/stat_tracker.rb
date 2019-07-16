@@ -3,15 +3,17 @@ require 'pry'
 require './lib/game'
 require './lib/team'
 require './lib/game_teams'
+require './modules/game_stats.rb'
 
 class StatTracker
+    include GameStats
 
 attr_reader :games, :teams, :game_teams
 
   def initialize(file_names)
     @games = []
     @teams = []
-    @game_teams =[]
+    @game_teams = []
     from_csv(file_names)
   end
 
@@ -37,7 +39,6 @@ attr_reader :games, :teams, :game_teams
     game_teams_gen = CSV.foreach(file_names[:game_teams],:headers => true) do |row|
       @game_teams.push(GameTeams.new(row))
     end
-    binding.pry
   end
 
 end

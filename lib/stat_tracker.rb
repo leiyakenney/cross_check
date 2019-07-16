@@ -3,8 +3,11 @@ require 'pry'
 
 class StatTracker
 
-  def initialize(games)
-    @games = games
+  def initialize
+    @games = []
+    @teams = []
+    @game_teams = []
+    @season = []
   end
 
   def self.from_csv(files)

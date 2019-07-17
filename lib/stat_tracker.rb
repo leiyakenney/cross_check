@@ -1,9 +1,9 @@
 require 'csv'
 require 'pry'
-require './lib/game'
-require './lib/team'
-require './lib/game_teams'
-require './modules/game_stats'
+require_relative './game'
+require_relative './team'
+require_relative'./game_teams'
+require_relative'./modules/game_stats'
 
 class StatTracker
     include GameStats

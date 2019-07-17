@@ -27,8 +27,21 @@ module GameStats
 
   def count_of_games_by_season(season_id)
     season_hash = {}
-    season_games = @games.map {|game| game.data['season'] == season_id}
+    season_games = @games.find_all {|game| game.data['season'] == season_id}
     season_hash[season_id] = season_games.count
+    season_hash
+  end
+
+  def average_goals_per_game
+    total_goals = @games.sum {|game| game.data['home_goals'].to_f + game.data['away_goals'].to_f}
+    (total_goals / @games.count).round(2)
+  end
+
+  def average_goals_by_season(season_id)
+    season_hash = {}
+    season_games = @games.find_all {|game| game.data['season'] == season_id}
+    total_goals = season_games.sum {|game| game.data['home_goals'].to_f + game.data['away_goals'].to_f}
+    season_hash[season_id] = (total_goals / @games.count).round(2)
     season_hash
   end
 

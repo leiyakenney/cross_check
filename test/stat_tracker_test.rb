@@ -1,4 +1,4 @@
-# require 'test_helper'
+require './test/test_helper'
 require './lib/stat_tracker'
 require 'minitest/autorun'
 require 'minitest/pride'

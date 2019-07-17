@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require 'test_helper'
+require './test/test_helper'
 require './lib/game'
 
 
@@ -18,7 +18,7 @@ _start"=>"left", "venue"=>"TD Garden", "venue_link"=>"/api/v1/venues/null", "ven
 
   def test_attributes
     assert_equal "2012030221", @game.game_id
-    assert_equal "2", @game.away_goals 
+    assert_equal "2", @game.away_goals
   end
 
 end

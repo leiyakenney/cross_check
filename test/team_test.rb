@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require 'test_helper'
+require './test/test_helper'
 require'./lib/team'
 require'./lib/stat_tracker'
 require'./lib/game'

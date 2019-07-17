@@ -23,8 +23,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 2012030123, @tracker.games[18].game_id
     assert_equal 1, @tracker.teams[0].team_id
     assert_equal 27, @tracker.teams[18].team_id
-    # assert_equal '2', @tracker.game_teams[0].home_goals
-    # assert_equal '1', @tracker.game_teams[18].goals
+    assert_equal 2, @tracker.game_teams[0].goals
+    assert_equal 1, @tracker.game_teams[18].goals
   end
 
   def test_module_works

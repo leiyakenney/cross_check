@@ -46,5 +46,4 @@ attr_reader :games, :teams, :game_teams
     end
     game_teams_arr
   end
-
 end

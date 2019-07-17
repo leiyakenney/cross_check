@@ -25,4 +25,12 @@ class TeamTest < Minitest::Test
     assert_instance_of Team, @team
   end
 
+  # def test_team_info
+  #
+  # end
+
+  def test_best_season
+
+  end
+
 end

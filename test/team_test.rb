@@ -25,36 +25,4 @@ class TeamTest < Minitest::Test
     assert_instance_of Team, @team
   end
 
-  def test_highest_total_score
-    assert_equal "2012030222", @tracker.highest_total_score.data['game_id']
-  end
-
-  def test_lowest_total_score
-    assert_equal "2012030314", @tracker.lowest_total_score.data['game_id']
-  end
-
-  def test_biggest_blowout
-    assert_equal "2012030312", @tracker.biggest_blowout.data['game_id']
-  end
-
-  def test_percentage_home_wins
-    assert_equal 100.0, @tracker.percentage_home_wins('6')
-  end
-
-  def test_percentage_visitor_wins
-    assert_equal 75.0, @tracker.percentage_visitor_wins('6')
-  end
-
-  def test_count_of_games_by_season
-    assert_equal ({"20122013" => 19}), @tracker.count_of_games_by_season("20122013")
-  end
-
-  def test_average_goals_per_game
-      assert_equal 4.63, @tracker.average_goals_per_game
-  end
-
-  def test_average_goals_by_season
-    assert_equal ({"20122013" => 4.63}), @tracker.average_goals_by_season("20122013")
-  end
-
 end

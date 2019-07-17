@@ -10,7 +10,7 @@ class StatTracker
 
 attr_reader :games, :teams, :game_teams
 
-  def initialize(file_names)
+  def initialize(games, teams, game_teams)
     @games = []
     @teams = []
     @game_teams = []
@@ -19,27 +19,33 @@ attr_reader :games, :teams, :game_teams
 
   def self.from_csv(file_names)
     games = game_gen(file_names)
-    team = team_gen(file_names)
+    teams = teams_gen(file_names)
     game_teams = game_teams_gen(file_names)
+    StatTracker.new(games, teams, game_teams)
   end
 
   def self.game_gen(file_names)
     game_arr = []
-    game_gen = CSV.foreach(file_names[:games],:headers => true) do |row|
+    CSV.foreach(file_names[:games],:headers => true) do |row|
       game_arr.push(Game.new(row))
     end
+    game_arr
   end
 
-  def self.team_gen(file_names)
-    team_gen = CSV.foreach(file_names[:teams],:headers => true) do |row|
-      @teams.push(Team.new(row))
+  def self.teams_gen(file_names)
+    teams_arr = []
+    CSV.foreach(file_names[:teams],:headers => true) do |row|
+      teams_arr.push(Team.new(row))
     end
+    teams_arr
   end
 
   def self.game_teams_gen(file_names)
-    game_teams_gen = CSV.foreach(file_names[:game_teams],:headers => true) do |row|
-      @game_teams.push(GameTeams.new(row))
+    game_teams_arr = []
+    CSV.foreach(file_names[:game_teams],:headers => true) do |row|
+      game_teams_arr.push(GameTeams.new(row))
     end
+    game_teams_arr
   end
 
 end

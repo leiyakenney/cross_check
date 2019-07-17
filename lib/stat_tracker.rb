@@ -1,7 +1,7 @@
 require 'csv'
 require 'pry'
 require_relative './game'
-require_relative './team'
+require_relative './teams'
 require_relative './game_teams'
 require_relative './modules/game_stats'
 

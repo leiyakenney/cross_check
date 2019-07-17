@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 # require 'test_helper'
 require'./lib/team'
+require'./lib/stat_tracker'
+require'./lib/game'
 
 
 class TeamTest < Minitest::Test
@@ -16,12 +18,31 @@ class TeamTest < Minitest::Test
       game_teams: game_teams_path
     }
     @tracker = StatTracker.new(@file_names)
+    @team = Team.new
   end
 
   def test_it_exists
-    team = Team.new
+    assert_instance_of Team, @team
+  end
 
-    assert_instance_of Team, team
+  def test_highest_total_score
+    assert_equal "2012030312", @tracker.highest_total_score.data['game_id']
+  end
+
+  def test_lowest_total_score
+    assert_equal "2012030314", @tracker.lowest_total_score.data['game_id']
+  end
+
+  def test_biggest_blowout
+    assert_equal "2012030312", @tracker.biggest_blowout.data['game_id']
+  end
+
+  def test_percentage_home_wins
+    assert_equal 100.0, @tracker.test_percentage_home_wins(6)
+  end
+
+  def test_percentage_visitor_wins
+    assert_equal 75.0, @tracker.test_percentage_visitor_wins(6)
   end
 
 end

@@ -13,8 +13,8 @@ _start"=>"left", "venue"=>"TD Garden", "venue_link"=>"/api/v1/venues/null", "ven
   end
 
   def test_attributes
-    assert_equal "2012030221", @game.game_id
-    assert_equal "2", @game.away_goals
+    assert_equal 2012030221, @game.game_id
+    assert_equal 2, @game.away_goals
   end
 
 end

@@ -34,26 +34,32 @@ class TeamTest < Minitest::Test
   end
 
   def test_biggest_blowout
+    skip
     assert_equal "2012030312", @tracker.biggest_blowout.data['game_id']
   end
 
   def test_percentage_home_wins
+    skip
     assert_equal 100.0, @tracker.test_percentage_home_wins(6)
   end
 
   def test_percentage_visitor_wins
+    skip
     assert_equal 75.0, @tracker.test_percentage_visitor_wins(6)
   end
 
   def test_count_of_games_by_season
+    skip
     assert_equal ({"20122013" => 19}), @tracker.test_count_of_games_by_season
   end
 
   def test_average_goals_per_game
+    skip
       assert_equal 4.63, @tracker.test_average_goals_per_game
   end
 
   def test_average_goals_by_season
+    skip
     assert_equal ({"20122013" => 4.63}), @tracker.test_average_goals_per_game
   end
 

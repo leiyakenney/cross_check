@@ -55,4 +55,30 @@ module GameStats
     team = @teams.find {|team| team.team_id == id}
     team.team_name
   end
+
+  def highest_scoring_home_team
+    team_vs_goals = Hash.new(0)
+    games_played = Hash.new(0)
+    games.each do |game|
+      games_played[game.home_team_id] += 1
+      team_vs_goals[game.home_team_id] += game.home_goals
+    end
+    high_team = team_vs_goals.max_by do |team, goals|
+          (goals / games_played[team]).to_f
+      end
+    convert_id_to_name(high_team[0])
+  end
+
+  def lowest_scoring_home_team
+    team_vs_goals = Hash.new(0)
+    games_played = Hash.new(0)
+    games.each do |game|
+      games_played[game.home_team_id] += 1
+      team_vs_goals[game.home_team_id] += game.home_goals
+    end
+    low_team = team_vs_goals.min_by do |team, goals|
+          (goals / games_played[team]).to_f
+      end
+    convert_id_to_name(low_team[0])
+  end
 end

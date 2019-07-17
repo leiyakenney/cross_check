@@ -42,13 +42,11 @@ class TeamTest < Minitest::Test
   end
 
   def test_percentage_visitor_wins
-    skip
     assert_equal 75.0, @tracker.percentage_visitor_wins('6')
   end
 
   def test_count_of_games_by_season
-    skip
-    assert_equal ({"20122013" => 19}), @tracker.count_of_games_by_season
+    assert_equal ({"20122013" => 19}), @tracker.count_of_games_by_season("20122013")
   end
 
   def test_average_goals_per_game

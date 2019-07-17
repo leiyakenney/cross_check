@@ -15,8 +15,23 @@ module GameStats
 
   def percentage_home_wins(team_id)
     game_collection = @games.find_all {|game| game.data['home_team_id'] == team_id}
-    game_wins = game_collection.find_all {|game| game.data['outcome'].include?('win')}
-    ((game_collection.count.to_f / game_wins.count) * 100).round(2)
+    game_wins = game_collection.find_all {|game| game.data['outcome'].include?('home win')}
+    ((game_wins.count / game_collection.count.to_f) * 100).round(2)
   end
+
+  def percentage_visitor_wins(team_id)
+    game_collection = @games.find_all {|game| game.data['away_team_id'] == team_id}
+    game_wins = game_collection.find_all {|game| game.data['outcome'].include?('away win')}
+    ((game_wins.count / game_collection.count.to_f) * 100).round(2)
+  end
+
+  def count_of_games_by_season(season_id)
+    season_hash = {}
+    season_games = @games.map {|game| game.data['season'] == season_id}
+    season_hash[season_id] = season_games.count
+    season_hash
+  end
+
+
 
 end

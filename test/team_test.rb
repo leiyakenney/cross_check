@@ -11,8 +11,7 @@ class TeamTest < Minitest::Test
       teams: team_path,
       game_teams: game_teams_path
     }
-    @tracker = StatTracker.new(@file_names)
-    @team = Team.new
+    @team = Team.new({:team_id => 2,})
   end
 
   def test_it_exists

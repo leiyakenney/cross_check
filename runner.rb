@@ -13,4 +13,3 @@ file_names = {
 }
 
 stat_tracker = StatTracker.new(file_names)
-

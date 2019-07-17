@@ -44,7 +44,4 @@ module GameStats
     season_hash[season_id] = (total_goals / @games.count).round(2)
     season_hash
   end
-
-
-
 end

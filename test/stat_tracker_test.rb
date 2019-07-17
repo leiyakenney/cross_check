@@ -1,8 +1,4 @@
 require './test/test_helper'
-require './lib/stat_tracker'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './modules/game_stats'
 
 class StatTrackerTest < Minitest::Test
 

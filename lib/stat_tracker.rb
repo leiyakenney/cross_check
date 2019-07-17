@@ -14,7 +14,6 @@ attr_reader :games, :teams, :game_teams
     @games = games
     @teams = teams
     @game_teams = game_teams
-    # from_csv(file_names)
   end
 
   def self.from_csv(file_names)

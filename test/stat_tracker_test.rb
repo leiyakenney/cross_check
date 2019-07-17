@@ -21,8 +21,8 @@ class StatTrackerTest < Minitest::Test
   def test_initialization
     assert_equal 2012030221, @tracker.games[0].game_id
     assert_equal 2012030123, @tracker.games[18].game_id
-    assert_equal '1', @tracker.teams[0].team_id
-    assert_equal '27', @tracker.teams[18].team_id
+    assert_equal 1, @tracker.teams[0].team_id
+    assert_equal 27, @tracker.teams[18].team_id
     # assert_equal '2', @tracker.game_teams[0].home_goals
     # assert_equal '1', @tracker.game_teams[18].goals
   end
@@ -61,5 +61,9 @@ class StatTrackerTest < Minitest::Test
 
   def test_average_goals_by_season
     assert_equal ({"20122013" => 4.57, "20132014" => 4.67, "20142015" => 5.00}), @tracker.average_goals_by_season
+  end
+
+  def test_convert_id_to_name
+    assert_equal 'Devils', @tracker.convert_id_to_name(1)
   end
 end

@@ -11,10 +11,10 @@ class StatTrackerTest < Minitest::Test
       teams: team_path,
       game_teams: game_teams_path
     }
-    @tracker = StatTracker.new(@file_names)
+    @tracker = StatTracker.from_csv(@file_names)
   end
 
-  def test_instance
+  def test_it_exists
     assert_instance_of StatTracker, @tracker
   end
 

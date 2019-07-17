@@ -12,4 +12,4 @@ file_names = {
   game_teams: game_teams_path
 }
 
-stat_tracker = StatTracker.new(file_names)
+stat_tracker = StatTracker.from_csv(file_names)

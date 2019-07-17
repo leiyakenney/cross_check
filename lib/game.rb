@@ -5,7 +5,6 @@ class Game
   :home_goals, :outcome
 
   def initialize(data)
-    @data = data
     @game_id = data["game_id"].to_i
     @season = data["season"]
     @type = data["type"]

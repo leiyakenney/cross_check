@@ -2,25 +2,28 @@ require 'pry'
 module GameStats
 
   def highest_total_score
-    @games.max_by {|game| (game.away_goals + game.home_goals)}
+    game = @games.max_by {|game| (game.away_goals + game.home_goals)}
+    game.away_goals + game.home_goals
   end
 
   def lowest_total_score
-    @games.min_by {|game| (game.away_goals + game.home_goals)}
+    game = @games.min_by {|game| (game.away_goals + game.home_goals)}
+    game.away_goals + game.home_goals
   end
 
   def biggest_blowout
-    @games.max_by {|game| (game.away_goals - game.home_goals).abs}
+    game = @games.max_by {|game| (game.away_goals - game.home_goals).abs}
+    (game.away_goals - game.home_goals).abs
   end
 
   def percentage_home_wins
     game_wins = @games.find_all {|game| game.outcome.include?('home win')}
-    ((game_wins.length / @games.length.to_f) * 100).round(2)
+    (game_wins.length / @games.length.to_f).round(2)
   end
 
   def percentage_visitor_wins
     game_wins = @games.find_all {|game| game.outcome.include?('away win')}
-    ((game_wins.length / @games.length.to_f) * 100).round(2)
+    (game_wins.length / @games.length.to_f).round(2)
   end
 
   def count_of_games_by_season

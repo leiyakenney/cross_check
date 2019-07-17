@@ -11,9 +11,9 @@ class StatTracker
 attr_reader :games, :teams, :game_teams
 
   def initialize(games, teams, game_teams)
-    @games = []
-    @teams = []
-    @game_teams = []
+    @games = games
+    @teams = teams
+    @game_teams = game_teams
     # from_csv(file_names)
   end
 

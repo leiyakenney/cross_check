@@ -66,4 +66,5 @@ class StatTrackerTest < Minitest::Test
   def test_convert_id_to_name
     assert_equal 'Devils', @tracker.convert_id_to_name(1)
   end
+
 end

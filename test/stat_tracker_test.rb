@@ -64,6 +64,12 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_convert_id_to_name
+    # binding.pry
     assert_equal 'Devils', @tracker.convert_id_to_name(1)
+  end
+
+  def test_best_defense
+
+    assert 'Devils', @tracker.best_defense
   end
 end

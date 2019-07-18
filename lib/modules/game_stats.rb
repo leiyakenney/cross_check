@@ -41,10 +41,10 @@ module GameStats
 
   def average_goals_by_season
     season_hash = Hash.new(0)
+    avg_hash = {}
     @games.each do |game|
       season_hash[game.season] += (game.home_goals.to_f + game.away_goals.to_f)
     end
-    avg_hash = {}
     count_of_games_by_season.map do |game_season, sum_of_games|
       avg_hash[game_season] = (season_hash[game_season] / sum_of_games).round(2)
     end

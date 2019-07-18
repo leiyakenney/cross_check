@@ -4,7 +4,7 @@ SimpleCov.start do
 end
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/modules/game_stats'
+require './lib/modules/game_stats_module'
 require './lib/modules/league_stats_module'
 require './lib/teams'
 require './lib/game'

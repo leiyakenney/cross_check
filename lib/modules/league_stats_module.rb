@@ -33,4 +33,8 @@ module LeagueStats
       end
     convert_id_to_name(low_team[0])
   end
+
+  def count_of_teams
+    @teams.count {|team| team.team_id}
+  end
 end

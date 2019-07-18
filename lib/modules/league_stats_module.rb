@@ -75,35 +75,39 @@ module LeagueStats
     @teams.count {|team| team.team_id}
   end
 
-  def offense_helper
+
+  def total_goals_by_game_team
     total_goal_by_team = Hash.new(0)
     @game_teams.each do |game|
       total_goal_by_team[game.team_id] += game.goals.to_f
     end
     total_goal_by_team
+  end
 
+  def total_games_by_game_team
      total_games_by_teams = Hash.new(0)
      @game_teams.each do |game|
       total_games_by_teams[game.team_id] += 1
     end
     total_games_by_teams
+  end
 
-
+  def average_offense
     avg_offense = Hash.new
-    total_goal_by_team.map do |team_id, total_goals|
-      avg_offense[team_id] = (total_goal_by_team[team_id]/total_games_by_teams[team_id]).round(2)
+    total_goals_by_game_team.map do |team_id, total_goals|
+      avg_offense[team_id] = (total_goals_by_game_team[team_id]/total_games_by_game_team[team_id]).round(2)
     end
     avg_offense
   end
 
   def best_offense
-    avg_offense = offense_helper
+    avg_offense = average_offense
     best_offense_team = avg_offense.max_by {|team_id, avg_goals| avg_goals}
     convert_id_to_name(best_offense_team[0])
   end
 
   def worst_offense
-    avg_offense = offense_helper
+    avg_offense = average_offense
     best_offense_team = avg_offense.min_by {|team_id, avg_goals| avg_goals}
     convert_id_to_name(best_offense_team[0])
   end

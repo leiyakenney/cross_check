@@ -21,7 +21,7 @@ module LeagueStats
     away_team_goals
   end
 
-  def games_played
+  def home_games_played
     games_played_data = Hash.new(0)
     @games.each do |game|
       games_played_data[game.home_team_id] += 1

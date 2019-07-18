@@ -55,4 +55,25 @@ module GameStats
     team = @teams.find {|team| team.team_id == id}
     team.team_name
   end
+
+  def best_defense
+
+    total_away_goals_by_home_team = Hash.new(0)
+
+    @games.each do |game|
+      total_away_goals_by_home_team[game.home_team_id] += game.away_goals.to_f
+    end
+
+    total_games_by_home_teams = Hash.new(0)
+      #{home_team_id : 21}
+    @games.each do |game|
+      total_games_by_home_teams[game.home_team_id] += 1
+    end
+
+    avg_hash = {}
+
+    total_away_goals_by_home_team.map do |home_team_id, sum_of_away_goals|
+      avg_hash[home_team_id] = (total_away_goals_by_home_team.[home_team_id] / total_games_by_home_teams[home_team_id]).round(2)
+    end
+  end
 end

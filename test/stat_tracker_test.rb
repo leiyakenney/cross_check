@@ -78,5 +78,15 @@ class StatTrackerTest < Minitest::Test
   def test_worst_defense
 
     assert_equal "Penguins", @tracker.worst_denfense
-    end
+  end
+
+  def test_best_offense
+    #need to double check correct value
+    assert_equal "Senators", @tracker.best_offense
+  end
+
+  def test_worst_offense
+    #need to double check correct value
+    assert_equal "Penguins", @tracker.worst_denfense
+  end
 end

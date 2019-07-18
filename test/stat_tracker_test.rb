@@ -74,6 +74,6 @@ class StatTrackerTest < Minitest::Test
     #team 9 with out average of 1
     #currently getting [6, 1.0]
 
-    assert_equal 9, @tracker.best_defense
+    assert_equal "Senators", @tracker.best_defense
   end
 end

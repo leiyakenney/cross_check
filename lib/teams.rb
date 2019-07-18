@@ -11,3 +11,5 @@ class Team
     @link = data['link']
   end
 end
+
+#symbolconverter squashes all names to downcase

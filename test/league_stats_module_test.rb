@@ -40,15 +40,13 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_best_defense
-      #Needs work, no method
-    skip
-    assert_equal "Senators", @tracker.best_defense
+
+    assert_equal "Bruins", @tracker.best_defense
   end
 
   def test_worst_defense
-    #Needs work, no method
-    skip
-    assert_equal "Penguins", @tracker.worst_denfense
+
+    assert_equal "Canadiens", @tracker.worst_defense
   end
 
   def test_best_offense
@@ -57,9 +55,19 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_worst_offense
-    #need to double check correct value
 
     assert_equal "Penguins", @tracker.worst_offense
+  end
+
+
+  def test_total_games_played
+    skip
+    assert_equal 1500000, @tracker.total_games_played
+  end
+
+  def test_total_goals_against
+    skip
+    assert_equal 1000000, @tracker.total_goals_against
   end
 
   def test_best_fans
@@ -70,4 +78,5 @@ class LeagueStatsTest < Minitest::Test
     #3. Biggest difference - absolute value
     #4. Team 5 with difference of 3.5
   end
+
 end

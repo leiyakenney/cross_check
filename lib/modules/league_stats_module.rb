@@ -51,17 +51,20 @@ module LeagueStats
   end
 
   def highest_scoring_away_team
-    highest_away = away_team_goals.max_by do |id, goals|
+    away_high = away_team_goals.max_by do |id, goals|
       (goals.to_f / away_games_played[id])
     end
-    convert_id_to_name(highest_away[0])
+    convert_id_to_name(away_high[0])
   end
 
   def lowest_scoring_away_team
-    lowest_away = away_team_goals.min_by do |id, goals|
+    away_low = away_team_goals.min_by do |id, goals|
       (goals.to_f / away_games_played[id])
     end
-    convert_id_to_name(lowest_away[0])
+    convert_id_to_name(away_low[0])
   end
 
+  def count_of_teams
+    @teams.count {|team| team.team_id}
+  end
 end

@@ -30,7 +30,11 @@ class LeagueStatsTest < Minitest::Test
     assert_equal 'Bruins', @tracker.highest_scoring_away_team
   end
 
-  def test_lowest_scoring_away_team
+  def test_lowest_scoring_home_team
     assert_equal 'Penguins', @tracker.lowest_scoring_away_team
+  end
+
+  def test_count_of_teams
+    assert_equal 19, @tracker.count_of_teams
   end
 end

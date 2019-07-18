@@ -29,5 +29,4 @@ class StatTrackerTest < Minitest::Test
     assert_equal 2, @tracker.game_teams[0].goals
     assert_equal 1, @tracker.game_teams[18].goals
   end
-
 end

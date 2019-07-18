@@ -1,5 +1,6 @@
 require './test/test_helper'
 
+
 class LeagueStatsTest < Minitest::Test
 
   def setup
@@ -36,5 +37,37 @@ class LeagueStatsTest < Minitest::Test
 
   def test_count_of_teams
     assert_equal 19, @tracker.count_of_teams
+  end
+
+  def test_best_defense
+      #Needs work, no method
+    skip
+    assert_equal "Senators", @tracker.best_defense
+  end
+
+  def test_worst_defense
+    #Needs work, no method
+    skip
+    assert_equal "Penguins", @tracker.worst_denfense
+  end
+
+  def test_best_offense
+
+    assert_equal "Bruins", @tracker.best_offense
+  end
+
+  def test_worst_offense
+    #need to double check correct value
+
+    assert_equal "Penguins", @tracker.worst_offense
+  end
+
+  def test_best_fans
+    skip
+    #Name of the team with biggest difference between home and away win percentages.
+    #1. Percentage of home wins 0.00
+    #2. Percentage of away wins 0.00
+    #3. Biggest difference - absolute value
+    #4. Team 5 with difference of 3.5
   end
 end

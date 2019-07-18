@@ -56,74 +56,74 @@ module GameStats
     team.team_name
   end
 
-  def defense_helper
-
-    #look into group_by method?
-    #help method for offense method(best and worst)
-
-    total_away_goals_by_home_team = Hash.new(0)
-
-    @games.each do |game|
-      total_away_goals_by_home_team[game.home_team_id] += game.away_goals.to_f
-    end
-
-    total_away_goals_by_home_team
-
-     total_games_by_home_teams = Hash.new(0)
-
-    @games.each do |game|
-      total_games_by_home_teams[game.home_team_id] += 1
-    end
-
-    total_games_by_home_teams
-
-    avg_defense = Hash.new
-
-    total_away_goals_by_home_team.map do |home_team_id, total_away_goals|
-      avg_defense[home_team_id] = (total_away_goals/total_games_by_home_teams[home_team_id]).round(2)
-    end
-
-    avg_defense
-  end
-
-  def best_defense
-    avg_defense = defense_helper
-
-    best_defense_team = avg_defense.min_by {|k,v| v}
-
-    convert_id_to_name(best_defense_team[0])
-  end
-
-  def worst_denfense
-    avg_defense = defense_helper
-
-    worst_defense_team = avg_defense.max_by {|k,v| v}
-
-    convert_id_to_name(worst_defense_team[0])
-  end
+  # def defense_helper
+  #
+  #   #look into group_by method?
+  #   #help method for offense method(best and worst)
+  #
+  #   total_away_goals_by_home_team = Hash.new(0)
+  #
+  #   @games.each do |game|
+  #     total_away_goals_by_home_team[game.home_team_id] += game.away_goals.to_f
+  #   end
+  #
+  #   total_away_goals_by_home_team
+  #
+  #    total_games_by_home_teams = Hash.new(0)
+  #
+  #   @games.each do |game|
+  #     total_games_by_home_teams[game.home_team_id] += 1
+  #   end
+  #
+  #   total_games_by_home_teams
+  #
+  #   avg_defense = Hash.new
+  #
+  #   total_away_goals_by_home_team.map do |home_team_id, total_away_goals|
+  #     avg_defense[home_team_id] = (total_away_goals/total_games_by_home_teams[home_team_id]).round(2)
+  #   end
+  #
+  #   avg_defense
+  # end
+  #
+  # def best_defense
+  #   avg_defense = defense_helper
+  #
+  #   best_defense_team = avg_defense.min_by {|k,v| v}
+  #
+  #   convert_id_to_name(best_defense_team[0])
+  # end
+  #
+  # def worst_denfense
+  #   avg_defense = defense_helper
+  #
+  #   worst_defense_team = avg_defense.max_by {|k,v| v}
+  #
+  #   convert_id_to_name(worst_defense_team[0])
+  # end
 
   def offense_helper
     #help method for offense method(best and worst)
-    total_home_goals_by_home_team = Hash.new(0)
+    total_goal_by_team = Hash.new(0)
 
-    @games.each do |game|
-      total_home_goals_by_home_team[game.home_team_id] += game.home_goals.to_f
+    @game_teams.each do |game|
+      total_goal_by_team[game.team_id] += game.goals.to_f
     end
 
-    total_home_goals_by_home_team
+    total_goal_by_team
 
-     total_games_by_home_teams = Hash.new(0)
+     total_games_by_teams = Hash.new(0)
 
-    @games.each do |game|
-      total_games_by_home_teams[game.home_team_id] += 1
+     @game_teams.each do |game|
+      total_games_by_teams[game.team_id] += 1
     end
 
-    total_games_by_home_teams
+    total_games_by_teams
 
     avg_offense = Hash.new
 
-    total_home_goals_by_home_team.map do |home_team_id, total_home_goals|
-      avg_offense[home_team_id] = (total_home_goals/total_games_by_home_teams[home_team_id]).round(2)
+    total_goal_by_team.map do |team_id, total_goals|
+      avg_offense[team_id] = (total_goal_by_team[team_id]/total_games_by_teams[team_id]).round(2)
     end
 
     avg_offense
@@ -133,18 +133,20 @@ module GameStats
     #need to double check math
     avg_offense = offense_helper
 
-    best_offense_team = avg_offense.max_by {|k,v| v}
+    best_offense_team = avg_offense.max_by {|team_id, avg_goals| avg_goals}
 
     convert_id_to_name(best_offense_team[0])
   end
 
   def worst_offense
-    #need to double check math 
+    #need to double check math
     avg_offense = offense_helper
 
-    best_offense_team = avg_offense.min_by {|k,v| v}
+    best_offense_team = avg_offense.min_by {|team_id, avg_goals| avg_goals}
 
     convert_id_to_name(best_offense_team[0])
   end
+
+  #sum/total number of games
 
 end

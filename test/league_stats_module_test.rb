@@ -59,6 +59,11 @@ class LeagueStatsTest < Minitest::Test
     assert_equal "Penguins", @tracker.worst_offense
   end
 
+  def test_winningest_team
+
+    assert_equal "Bruins", @tracker.winningest_team
+  end
+
 
   def test_total_games_played
     skip

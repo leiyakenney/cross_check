@@ -1,3 +1,4 @@
+require 'pry'
 module LeagueStats
 
   def convert_id_to_name(id)
@@ -147,5 +148,20 @@ module LeagueStats
       (goals.to_f/ total_games_played[team_id])
     end
     convert_id_to_name(lowest_defense[0])
+  end
+
+  def games_won_game_team
+    game_team_wins = Hash.new(0)
+    @game_teams.find_all do |game|
+      if game.won == 'TRUE'
+        game_team_wins[game.team_id] += 1
+      end
+    end
+    game_team_wins
+  end
+
+  def winningest_team
+    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won}
+    convert_id_to_name(awesomest_team[0])
   end
 end

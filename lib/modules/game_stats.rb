@@ -58,6 +58,8 @@ module GameStats
 
   def defense_helper
 
+    #look into group_by method?
+
     total_away_goals_by_home_team = Hash.new(0)
 
     @games.each do |game|
@@ -76,15 +78,28 @@ module GameStats
 
     avg_defense = Hash.new
 
-
     total_away_goals_by_home_team.map do |home_team_id, total_away_goals|
       avg_defense[home_team_id] = (total_away_goals/total_games_by_home_teams[home_team_id]).round(2)
     end
 
+    avg_defense
+  end
+
+  def best_defense
+    avg_defense = defense_helper
+
     best_defense_team = avg_defense.min_by {|k,v| v}
 
     convert_id_to_name(best_defense_team[0])
-
   end
+
+  def worst_denfense
+    avg_defense = defense_helper
+
+    worst_defense_team = avg_defense.max_by {|k,v| v}
+
+    convert_id_to_name(worst_defense_team[0])
+  end
+
 
 end

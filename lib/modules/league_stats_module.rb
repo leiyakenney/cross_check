@@ -161,7 +161,7 @@ module LeagueStats
   end
 
   def winningest_team
-    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won / total_games_by_game_team[team_id]}
+    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won.to_f / total_games_by_game_team[team_id]}
     convert_id_to_name(awesomest_team[0])
   end
 end

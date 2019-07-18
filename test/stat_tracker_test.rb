@@ -60,6 +60,7 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_average_goals_by_season
+
     assert_equal ({"20122013" => 4.57, "20132014" => 4.67, "20142015" => 5.00}), @tracker.average_goals_by_season
   end
 
@@ -70,6 +71,9 @@ class StatTrackerTest < Minitest::Test
 
   def test_best_defense
 
-    assert 'Devils', @tracker.best_defense
+    #team 9 with out average of 1
+    #currently getting [6, 1.0]
+
+    assert_equal 9, @tracker.best_defense
   end
 end

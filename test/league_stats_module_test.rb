@@ -32,7 +32,6 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_lowest_scoring_visitor
-    skip
     assert_equal 'Penguins', @tracker.lowest_scoring_visitor
   end
 

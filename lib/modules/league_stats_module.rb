@@ -164,4 +164,70 @@ module LeagueStats
     awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won.to_f / total_games_by_game_team[team_id]}
     convert_id_to_name(awesomest_team[0])
   end
+
+  def best_fans
+
+    #total home games won using game_teams CSV
+    home_game_team_wins = Hash.new(0)
+    @game_teams.find_all do |game|
+      if game.won == 'TRUE' && game.hoa == 'home'
+        home_game_team_wins[game.team_id] += 1
+      end
+    end
+    home_game_team_wins
+
+    #total away games won using game_teams CSV
+    away_game_team_wins = Hash.new(0)
+    @game_teams.find_all do |game|
+      if game.won == 'TRUE' && game.hoa == 'away'
+        away_game_team_wins[game.team_id] += 1
+      end
+    end
+    away_game_team_wins
+
+    #total home games played using game_teams CSV
+    total_home_games_played = Hash.new(0)
+    @game_teams.each do |game|
+      if game.hoa == 'home'
+        total_home_games_played[game.team_id] += 1
+      end
+    end
+    total_home_games_played
+
+    #total away games played using game_teams CSV
+    total_away_games_played = Hash.new(0)
+    @game_teams.each do |game|
+      if game.hoa == 'away'
+        total_away_games_played[game.team_id] += 1
+      end
+    end
+    total_away_games_played
+
+    #percent of home game won using game_team CSV
+    percent_of_home_games_won = Hash.new(0)
+    home_game_team_wins.map do |team_id, home_wins|
+      percent_of_home_games_won[team_id] = home_wins/total_home_games_played[team_id].to_f
+    end
+    percent_of_home_games_won
+
+    #percent of away game won using game_team CSV
+    percent_of_away_games_won = Hash.new(0)
+    away_game_team_wins.map do |team_id, away_wins|
+      percent_of_away_games_won[team_id] = away_wins/total_away_games_played[team_id].to_f
+    end
+    percent_of_away_games_won
+
+    #difference between percent home wins & percent away wins
+    difference_home_vs_away_won = Hash.new(0)
+    percent_of_home_games_won.map do |team_id, home_win|
+      difference_home_vs_away_won[team_id] = home_win - percent_of_away_games_won[team_id]
+    end
+    difference_home_vs_away_won
+
+    #team with greatest difference between home wins vs away wins
+    team_diff_greatest_home_v_away = difference_home_vs_away_won.max_by {|team_id, diff_avg| diff_avg }
+
+    #convert team id to team name
+    convert_id_to_name(team_diff_greatest_home_v_away[0])
+  end
 end

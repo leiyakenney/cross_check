@@ -76,12 +76,8 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_best_fans
-    skip
-    #Name of the team with biggest difference between home and away win percentages.
-    #1. Percentage of home wins 0.00
-    #2. Percentage of away wins 0.00
-    #3. Biggest difference - absolute value
-    #4. Team 5 with difference of 3.5
+  
+    assert_equal "Rangers", @tracker.best_fans
   end
 
 end

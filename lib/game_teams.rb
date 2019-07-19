@@ -3,8 +3,8 @@ class GameTeams
   attr_reader :data, :game_id, :team_id, :hoa, :won, :settled_in, :head_coach, :goals, :shots, :hits, :pim, :ppo, :ppg, :fow, :giveaways, :takeaways
 
   def initialize(data)
-    @game_id = data["game_id"].to_i
-    @team_id = data["team_id"].to_i
+    @game_id = data["game_id"]
+    @team_id = data["team_id"]
     @hoa = data["HoA"]
     @won = data["won"]
     @settled_in = data["settled_in"]

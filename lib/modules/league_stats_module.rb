@@ -181,6 +181,12 @@ module LeagueStats
     home_wins
   end
 
+  def home_wins_percentage_by_team
+    win_percentages = total_home_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
+    max = win_percentages.max_by{|k,v| v}
+    max[1].round(2)
+  end
+
   def total_away_wins_by_team
     away_wins = Hash.new(0)
     @game_teams.each do |team|
@@ -191,14 +197,20 @@ module LeagueStats
     away_wins
   end
 
+  def away_wins_percentage_by_team
+    loss_percentages = total_away_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
+    max = loss_percentages.max_by{|k,v| v}
+    max[1].round(2)
+  end
+
   def worst_fans
-    worst_fans = []
+    worst_fans_arr = []
     @game_teams.each do |team|
-      if total_away_wins_by_team[team.team_id] > total_home_wins_by_team[team.team_id]
-        worst_fans << team.team_id
+      if away_wins_percentage_by_team > home_wins_percentage_by_team
+        worst_fans_arr << team.team_id
       end
     end
-    worst_fans.uniq.map do |worst|
+    worst_fans_arr.uniq.map do |worst|
       convert_id_to_name(worst)
     end
   end

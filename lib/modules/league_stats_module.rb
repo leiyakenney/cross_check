@@ -86,8 +86,8 @@ module LeagueStats
   end
 
   def total_games_by_game_team
-     total_games_by_teams = Hash.new(0)
-     @game_teams.each do |game|
+   total_games_by_teams = Hash.new(0)
+   @game_teams.each do |game|
       total_games_by_teams[game.team_id] += 1
     end
     total_games_by_teams
@@ -165,5 +165,26 @@ module LeagueStats
     convert_id_to_name(awesomest_team[0])
   end
 
-  
+  def home_games_won
+    home_game_won = {}
+    @games.each do |game|
+      if home_games_played.each.include?('home win')
+        home_game_won[home_team_id] += convert_id_to_name(home_team_id[0])
+      end
+  end
+
+  def away_games_won
+    away_game_won = {}
+    @games.each do |game|
+      if away_games_played.each.include?('away win')
+        away_game_won[away_team_id] += convert_id_to_name(away_team_id[0])
+      end
+  end
+
+  def worst_fans
+    if away_games_won.length > home_games_won.length
+      away_games_won
+    end
+  end
+
 end

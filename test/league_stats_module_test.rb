@@ -32,6 +32,7 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_lowest_scoring_visitor
+    skip
     assert_equal 'Penguins', @tracker.lowest_scoring_visitor
   end
 
@@ -82,6 +83,16 @@ class LeagueStatsTest < Minitest::Test
     #2. Percentage of away wins 0.00
     #3. Biggest difference - absolute value
     #4. Team 5 with difference of 3.5
+  end
+
+  def test_total_home_wins
+    expected = {6=>5, 3=>2, 5=>2}
+    assert_equal expected, @tracker.total_home_wins_by_team
+  end
+
+  def test_total_away_wins
+    expected = {3=>3, 6=>4, 5=>2, 17=>1}
+    assert_equal expected, @tracker.total_away_wins_by_team
   end
 
   def test_worst_fans

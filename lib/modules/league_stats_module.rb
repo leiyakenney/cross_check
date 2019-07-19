@@ -207,8 +207,8 @@ module LeagueStats
   end
 
   def away_wins_percentage_by_team
-    loss_percentages = total_away_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
-    max = loss_percentages.max_by{|k,v| v}
+    aw_percentages = total_away_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
+    max = aw_percentages.max_by{|k,v| v}
     max[1].round(2)
   end
 
@@ -223,4 +223,75 @@ module LeagueStats
       convert_id_to_name(worst)
     end
   end
+
+  def home_game_team_wins
+    home_game_team_win = Hash.new(0)
+      @game_teams.find_all do |game|
+        if game.won == 'TRUE' && game.hoa == 'home'
+        home_game_team_win[game.team_id] += 1
+        end
+      end
+    home_game_team_win
+  end
+
+  def away_game_team_wins
+    away_game_team_wins = Hash.new(0)
+      @game_teams.find_all do |game|
+        if game.won == 'TRUE' && game.hoa == 'away'
+        away_game_team_wins[game.team_id] += 1
+        end
+      end
+    away_game_team_wins
+  end
+
+  def total_home_games_played
+    total_home_games_played = Hash.new(0)
+    @game_teams.each do |game|
+      if game.hoa == 'home'
+      total_home_games_played[game.team_id] += 1
+      end
+    end
+    total_home_games_played
+  end
+
+  def total_away_games_played
+    total_away_game_played = Hash.new(0)
+    @game_teams.each do |game|
+      if game.hoa == 'away'
+      total_away_game_played[game.team_id] += 1
+      end
+    end
+    total_away_game_played
+  end
+
+  def percent_of_home_games_won
+    percent_of_home_games_won = Hash.new(0)
+      home_game_team_wins.map do |team_id, home_wins|
+      percent_of_home_games_won[team_id] = home_wins/total_home_games_played[team_id].to_f
+    end
+    percent_of_home_games_won
+  end
+
+  def percent_of_away_games_won
+    percent_of_away_games_won = Hash.new(0)
+      away_game_team_wins.map do |team_id, away_wins|
+      percent_of_away_games_won[team_id] = away_wins/total_away_games_played[team_id].to_f
+    end
+    percent_of_away_games_won
+  end
+
+  def difference_home_vs_away_won
+    difference_home_vs_away_won = Hash.new(0)
+      percent_of_home_games_won.map do |team_id, home_win|
+      difference_home_vs_away_won[team_id] = home_win - percent_of_away_games_won[team_id]
+    end
+    difference_home_vs_away_won
+  end
+
+  def best_fans
+    team_diff_greatest_home_v_away = difference_home_vs_away_won.max_by {|team_id, diff_win| diff_win }
+    team_diff_greatest_home_v_away
+    convert_id_to_name(team_diff_greatest_home_v_away[0])
+  end
+
 end

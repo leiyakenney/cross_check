@@ -172,37 +172,4 @@ module LeagueStats
     game_wins = @games.find_all {|game| game.outcome.include?('home win')}
     (game_wins.length / @games.length.to_f).round(2)
   end
-
-  def total_home_wins_by_team
-    home_wins = Hash.new(0)
-    @game_teams.each do |team|
-      if team.won && team.hoa == 'home'
-        home_wins[team.team_id] += 1
-      end
-    end
-    home_wins
-  end
-
-  def total_away_wins_by_team
-    away_wins = Hash.new(0)
-    @game_teams.each do |team|
-      if team.won && team.hoa == 'away'
-        away_wins[team.team_id] += 1
-      end
-    end
-    away_wins
-  end
-
-  def worst_fans
-    worst_fans = []
-    @game_teams.each do |team|
-      if total_away_wins_by_team[team.team_id] > total_home_wins_by_team[team.team_id]
-        worst_fans << team.team_id
-      end
-    end
-    worst_fans.uniq.map do |worst|
-      convert_id_to_name(worst)
-    end
-  end
-
 end

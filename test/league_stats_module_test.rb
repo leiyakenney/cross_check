@@ -84,4 +84,8 @@ class LeagueStatsTest < Minitest::Test
     #4. Team 5 with difference of 3.5
   end
 
+  def test_worst_fans
+    assert_equal [], @tracker.worst_fans
+  end
+
 end

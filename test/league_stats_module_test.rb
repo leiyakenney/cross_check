@@ -76,7 +76,7 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_best_fans
-    assert_equal "Bruins", @tracker.best_fans
+    assert_equal "Rangers", @tracker.best_fans
   end
 
   def test_total_home_wins

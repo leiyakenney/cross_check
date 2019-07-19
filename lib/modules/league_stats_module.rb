@@ -86,8 +86,8 @@ module LeagueStats
   end
 
   def total_games_by_game_team
-     total_games_by_teams = Hash.new(0)
-     @game_teams.each do |game|
+   total_games_by_teams = Hash.new(0)
+   @game_teams.each do |game|
       total_games_by_teams[game.team_id] += 1
     end
     total_games_by_teams
@@ -164,4 +164,43 @@ module LeagueStats
     awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won.to_f / total_games_by_game_team[team_id]}
     convert_id_to_name(awesomest_team[0])
   end
+
+
+  def percentage_home_wins
+    game_wins = @games.find_all {|game| game.outcome.include?('home win')}
+    (game_wins.length / @games.length.to_f).round(2)
+  end
+
+  def total_home_wins_by_team
+    home_wins = Hash.new(0)
+    @game_teams.each do |team|
+      if team.won && team.hoa == 'home'
+        home_wins[team.team_id] += 1
+      end
+    end
+    home_wins
+  end
+
+  def total_away_wins_by_team
+    away_wins = Hash.new(0)
+    @game_teams.each do |team|
+      if team.won && team.hoa == 'away'
+        away_wins[team.team_id] += 1
+      end
+    end
+    away_wins
+  end
+
+  def worst_fans
+    worst_fans = []
+    @game_teams.each do |team|
+      if total_away_wins_by_team[team.team_id] > total_home_wins_by_team[team.team_id]
+        worst_fans << team.team_id
+      end
+    end
+    worst_fans.uniq.map do |worst|
+      convert_id_to_name(worst)
+    end
+  end
+
 end

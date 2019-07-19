@@ -1,6 +1,6 @@
 require './test/test_helper'
 
-class GameStatsTest < Minitest::Test
+class TeamStatsTest < Minitest::Test
 
   def setup
     game_path = './data/dummy_data/dummy_data_game.csv'
@@ -14,5 +14,7 @@ class GameStatsTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
-  
+  def test_average_win_percentage(team_id)
+    assert_equal 0.67, @tracker.average_win_percentage()
+  end
 end

@@ -78,9 +78,7 @@ module LeagueStats
         worst_fans_arr << team.team_id
       end
     end
-    worst_fans_arr.uniq.map do |worst|
-      convert_id_to_name(worst)
-    end
+    worst_fans_arr.uniq.map {|worst| convert_id_to_name(worst)}
   end
 
   def best_fans

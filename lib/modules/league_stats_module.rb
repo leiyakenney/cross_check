@@ -152,7 +152,7 @@ module LeagueStats
 
   def games_won_game_team
     game_team_wins = Hash.new(0)
-    @game_teams.find_all do |game|
+    @game_teams.each do |game|
       if game.won == 'TRUE'
         game_team_wins[game.team_id] += 1
       end
@@ -161,7 +161,9 @@ module LeagueStats
   end
 
   def winningest_team
-    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won.to_f / total_games_by_game_team[team_id]}
+    awesomest_team = games_won_game_team.max_by do |team_id, games_won|
+      games_won.to_f / total_games_by_game_team[team_id]
+    end
     convert_id_to_name(awesomest_team[0])
   end
 end

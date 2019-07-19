@@ -58,14 +58,14 @@ module LeagueStats
     convert_id_to_name(low_team[0])
   end
 
-  def highest_scoring_away_team
+  def highest_scoring_visitor
     away_high = away_team_goals.max_by do |id, goals|
       (goals.to_f / away_games_played[id])
     end
     convert_id_to_name(away_high[0])
   end
 
-  def lowest_scoring_away_team
+  def lowest_scoring_visitor
     away_low = away_team_goals.min_by do |id, goals|
       (goals.to_f / away_games_played[id])
     end
@@ -161,7 +161,7 @@ module LeagueStats
   end
 
   def winningest_team
-    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won}
+    awesomest_team = games_won_game_team.max_by {|team_id, games_won| games_won.to_f / total_games_by_game_team[team_id]}
     convert_id_to_name(awesomest_team[0])
   end
 end

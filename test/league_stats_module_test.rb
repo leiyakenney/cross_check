@@ -76,7 +76,8 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_best_fans
-  
+    #note: may need more data to test method
+
     assert_equal "Rangers", @tracker.best_fans
   end
 

@@ -186,6 +186,7 @@ module LeagueStats
     away_game_team_wins
 
     #total home games played using game_teams CSV
+    #note : there is already total_home_games method, but it uses the game CSV
     total_home_games_played = Hash.new(0)
     @game_teams.each do |game|
       if game.hoa == 'home'
@@ -195,6 +196,7 @@ module LeagueStats
     total_home_games_played
 
     #total away games played using game_teams CSV
+    #note : there is already total_home_games method, but it uses the game CSV
     total_away_games_played = Hash.new(0)
     @game_teams.each do |game|
       if game.hoa == 'away'
@@ -224,7 +226,7 @@ module LeagueStats
     end
     difference_home_vs_away_won
 
-    #team with greatest difference between home wins vs away wins
+    #team with greatest difference between home wins vs away wins, return team_id
     team_diff_greatest_home_v_away = difference_home_vs_away_won.max_by {|team_id, diff_avg| diff_avg }
 
     #convert team id to team name

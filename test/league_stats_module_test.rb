@@ -96,7 +96,7 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_worst_fans
-    assert_equal [], @tracker.worst_fans
+    assert_equal ["Rangers", "Red Wings"], @tracker.worst_fans
   end
 
 end

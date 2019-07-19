@@ -84,4 +84,18 @@ class LeagueStatsTest < Minitest::Test
     #4. Team 5 with difference of 3.5
   end
 
+  def test_total_home_wins
+    expected = {6=>5, 3=>2, 5=>2}
+    assert_equal expected, @tracker.total_home_wins_by_team
+  end
+
+  def test_total_away_wins
+    expected = {3=>3, 6=>4, 5=>2, 17=>1}
+    assert_equal expected, @tracker.total_away_wins_by_team
+  end
+
+  def test_worst_fans
+    assert_equal ["Rangers", "Red Wings"], @tracker.worst_fans
+  end
+
 end

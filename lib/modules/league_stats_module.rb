@@ -167,6 +167,14 @@ module LeagueStats
     convert_id_to_name(awesomest_team[0])
   end
 
+  def change_hash_ids_to_name(hash)
+   combined_names = {}
+   hash.each do |team_id, games_won|
+     combined_names[convert_id_to_name(games_won)] = games_won
+   end
+   combined_names
+ end
+
   def percentage_home_wins
     game_wins = @games.find_all {|game| game.outcome.include?('home win')}
     (game_wins.length / @games.length.to_f).round(2)
@@ -215,5 +223,4 @@ module LeagueStats
       convert_id_to_name(worst)
     end
   end
-
 end

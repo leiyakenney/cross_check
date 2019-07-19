@@ -84,6 +84,11 @@ class LeagueStatsTest < Minitest::Test
     #4. Team 5 with difference of 3.5
   end
 
+  def change_hash_ids_to_name
+    expected = {"Penguins"=>5, "Senators"=>9, "Flyers"=>4, "Devils"=>1}
+    assert_equal expected, @tracker.change_hash_ids_to_name(@tracker.total_games_by_game_team)
+  end
+
   def test_total_home_wins
     expected = {6=>5, 3=>2, 5=>2}
     assert_equal expected, @tracker.total_home_wins_by_team
@@ -97,5 +102,4 @@ class LeagueStatsTest < Minitest::Test
   def test_worst_fans
     assert_equal [], @tracker.worst_fans
   end
-
 end

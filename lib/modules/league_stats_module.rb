@@ -171,35 +171,23 @@ module LeagueStats
     (game_wins.length / @games.length.to_f).round(2)
   end
 
-
-  def home_games_won
-    home_game_won = []
-    @games.each do |game|
-      if home_games_played.outcome.include?('home win')
-        home_game_won[home_team_id] << home_team_id
-      end
-    end
-    home_game_won.map do |id|
-      convert_id_to_name(home_game_won[0])
-    end
+  def total_home_wins
+    home_wins = @games.find_all {|game| game.outcome.include?('home win')}
   end
 
-  def away_games_won
-    away_game_won = []
-    @games.each do |game|
-      if away_games_played.each.include?('away win')
-        away_game_won[away_team_id] << away_team_id
-      end
-    end
-    away_team_won.map.do |id|
-      convert_id_to_name(away_team_won[0])
-    end
+  def total_away_wins
+    away_wins = @games.find_all {|game| game.outcome.include?('away win')}
   end
 
   def worst_fans
-    if away_games_won.length > home_games_won.length
-      away_games_won
+    lame_fans = []
+    @games.each do |game|
+      if total_away_wins.length > total_home_wins.length
+        lame_fans << team_id
+      end
     end
+    lame_fans_team = lame_fans.each { |id| convert_id_to_name(id[0])}
+    lame_fans_team
   end
 
 end

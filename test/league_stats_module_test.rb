@@ -71,15 +71,15 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_total_goals_against
-    skip
-    assert_equal 1000000, @tracker.total_goals_against
+    expected = {3=>16, 6=>12, 5=>12, 17=>16, 16=>15, 9=>6, 8=>11}
+    assert_equal expected, @tracker.total_goals_against
   end
 
   def test_best_fans
     assert_equal "Rangers", @tracker.best_fans
   end
 
-  def change_hash_ids_to_name
+  def test_change_hash_ids_to_name
     expected = {"Penguins"=>5, "Senators"=>9, "Flyers"=>4, "Devils"=>1}
     assert_equal expected, @tracker.change_hash_ids_to_name(@tracker.total_games_by_game_team)
   end

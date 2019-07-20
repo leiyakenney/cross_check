@@ -1,5 +1,5 @@
 module LeagueStatHelpers
-  
+
   def home_games_played
     games_home_played = Hash.new(0)
     @games.each do |game|
@@ -198,7 +198,7 @@ module LeagueStatHelpers
     team_games.max_by {|game| game.goals}.goals
   end
 
-  def least_goals_scored(id)
+  def fewest_goals_scored(id)
     team_games = @game_teams.select do |game|
        game.team_id == id
      end

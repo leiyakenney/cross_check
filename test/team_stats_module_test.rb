@@ -84,6 +84,10 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.head_to_head("6")
   end
 
+  def test_reg_vs_post
+    assert_equal "", @tracker.reg_vs_post("6")
+  end
+
   def test_seasonal_summary
     skip
     expected = {"20122013" => {

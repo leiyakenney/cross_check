@@ -38,4 +38,9 @@ class TeamStatsTest < Minitest::Test
     #What if two seasons are equally bad?
     assert_equal 20132014, @tracker.worst_season(6)
   end
+
+  def test_average_win_percentage
+    #Taking the average of the season averages?
+    assert_equal 0.89, @tracker.average_win_percentage(6)
+  end
 end

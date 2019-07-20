@@ -1,5 +1,5 @@
 module LeagueStatHelpers
-
+  
   def home_games_played
     games_home_played = Hash.new(0)
     @games.each do |game|

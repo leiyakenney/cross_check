@@ -22,10 +22,10 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_initialization
-    assert_equal 2012030221, @tracker.games[0].game_id
-    assert_equal 2012030123, @tracker.games[18].game_id
-    assert_equal 1, @tracker.teams[0].team_id
-    assert_equal 27, @tracker.teams[18].team_id
+    assert_equal "2012030221", @tracker.games[0].game_id
+    assert_equal "2012030123", @tracker.games[18].game_id
+    assert_equal "1", @tracker.teams[0].team_id
+    assert_equal "27", @tracker.teams[18].team_id
     assert_equal 2, @tracker.game_teams[0].goals
     assert_equal 1, @tracker.game_teams[18].goals
   end

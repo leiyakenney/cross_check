@@ -4,6 +4,7 @@ module LeagueStats
     high_team = home_team_goals.minmax_by do |team, goals|
       (goals.to_f / home_games_played[team])
     end
+    binding.pry
   end
 
   def highest_scoring_home_team

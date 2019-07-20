@@ -1,6 +1,6 @@
 require './test/test_helper'
 
-class GameStatsTest < Minitest::Test
+class TeamStatsTest < Minitest::Test
 
   def setup
     game_path = './data/dummy_data/dummy_data_game.csv'
@@ -14,5 +14,9 @@ class GameStatsTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
-  
+  def test_best_season
+    # binding.pry
+    assert_equal 1000000, @tracker.best_season(3)
+  end
+
 end

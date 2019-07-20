@@ -114,4 +114,15 @@ class LeagueStatsHelperTest < Minitest::Test
     expected = {"3"=>3, "6"=>4, "5"=>2, "17"=>1}
     assert_equal expected, @tracker.total_away_games_played
   end
+
+  def test_percent_of_home_games_won
+    expected = {"6"=>1.0, "3"=>0.5}
+    assert_equal expected, @tracker.percent_of_home_games_won
+  end
+
+  def test_percent_of_away_games_won
+    expected = {"6"=>0.75}
+    assert_equal expected, @tracker.percent_of_away_games_won
+  end
+
 end

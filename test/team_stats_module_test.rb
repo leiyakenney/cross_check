@@ -27,6 +27,14 @@ class TeamStatsTest < Minitest::Test
     assert_equal 1, @tracker.biggest_team_blowout("3")
   end
 
+  def test_most_goals_scored
+    assert_equal 6, @tracker.most_goals_scored("6")
+  end
+
+  def test_fewest_goals_scored
+    assert_equal 0, @tracker.fewest_goals_scored("5")
+  end
+
   def test_worst_loss
     assert_equal 3, @tracker.worst_loss("3")
   end
@@ -39,11 +47,6 @@ class TeamStatsTest < Minitest::Test
     expected = {"Rangers"=>0.8, "Penguins"=>1.0}
     assert_equal expected, @tracker.head_to_head("6")
   end
-
-  #For each season that the team has played, a hash that has two keys
-  #(:regular_season and :postseason), that each point to a hash with the
-  #following keys: :win_percentage, :total_goals_scored, :total_goals_against,
-  # :average_goals_scored, :average_goals_against.
 
   def test_seasonal_summary
     expected = {
@@ -62,6 +65,6 @@ class TeamStatsTest < Minitest::Test
         :average_goals_against => 3.1
       }
     }
-    assert_equal expected, @tracker.test_seasonal_summary("6")
+    assert_equal expected, @tracker.seasonal_summary("6")
   end
 end

@@ -27,6 +27,22 @@ module TeamStats
     blowout_amt
   end
 
+  def most_goals_scored(id)
+    team_games = @game_teams.find_all do |game|
+       game.team_id == id
+     end
+    high_game = team_games.max_by {|game| game.goals}
+    high_game.goals
+  end
+
+  def fewest_goals_scored(id)
+    team_games = @game_teams.find_all do |game|
+       game.team_id == id
+     end
+    low_game = team_games.min_by {|game| game.goals}
+    low_game.goals
+  end
+
   def worst_loss(team_id)
     loss_amt = 0
     @games.each do |game|
@@ -51,5 +67,9 @@ module TeamStats
       names_vs_percentage[convert_id_to_name(id)] = percentage.round(2)
     end
     names_vs_percentage
+  end
+
+  def seasonal_summary(team_id)
+    season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
   end
 end

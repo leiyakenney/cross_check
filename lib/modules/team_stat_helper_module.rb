@@ -31,4 +31,32 @@ module TeamStatHelpers
     end
     percentage_won
   end
+
+  def setup_reg_season_hash(team_id)
+    reg_season = {}
+    reg_season[:regular_season] = {
+      :win_percentage => 0,
+      :total_goals_scored => 0,
+      :total_goals_against => 0,
+      :average_goals_scored => 0,
+      :average_goals_against => 0,
+    }
+    reg_season
+  end
+
+  def setup_post_season_hash(team_id)
+    post_season = {}
+    post_season[:postseason] = {
+      :win_percentage => 0,
+      :total_goals_scored => 0,
+      :total_goals_against => 0,
+      :average_goals_scored => 0,
+      :average_goals_against => 0,
+    }
+    post_season
+  end
+
+  def method_name
+
+  end
 end

@@ -39,28 +39,37 @@ module TeamStats
   end
 
   #finds best season by finding highest avg and returning season
+  def best_worst_season(team_id)
+    avg_win_percent_by_season = avg_win_percent_by_season(team_id).minmax_by {|season, avg_win| avg_win}
+    avg_win_percent_by_season
+  end
+
   def best_season(team_id)
-    avg_win_percent_by_season = avg_win_percent_by_season(team_id).max_by {|season, avg_win| avg_win}
-    avg_win_percent_by_season[0].to_i
+    best_worst_season(team_id)[1][0].to_i
+  end
+
+  def worst_season(team_id)
+    best_worst_season(team_id)[0][0].to_i
   end
 
   #finds worst season by finding lowest avg and returning season
-  def worst_season(team_id)
-    avg_win_percent_by_season = avg_win_percent_by_season(team_id).min_by {|season, avg_win| avg_win}
-    avg_win_percent_by_season[0].to_i
-  end
+  # def worst_season(team_id)
+  #   avg_win_percent_by_season = avg_win_percent_by_season(team_id).min_by {|season, avg_win| avg_win}
+  #   avg_win_percent_by_season[0].to_i
+  # end
+
 
   #Fiddling around with avg_percent_wins by season for team
-  #Might be wrong... taking average of season average. 
-  def average_win_percentage(team_id)
-    avg_win_percent_by_season = avg_win_percent_by_season(team_id)
-
-    avg_wins_array = []
-      avg_win_percent_by_season.map do |season, avg_wins|
-        avg_wins_array << avg_wins
-      end
-
-    avg_wins_array
-    avg_percent_wins = (avg_wins_array.sum/avg_wins_array.size).round(2)
-  end
+  #Might be wrong... taking average of season average.
+  # def average_win_percentage(team_id)
+  #   avg_win_percent_by_season = avg_win_percent_by_season(team_id)
+  #
+  #   avg_wins_array = []
+  #     avg_win_percent_by_season.map do |season, avg_wins|
+  #       avg_wins_array << avg_wins
+  #     end
+  #
+  #   avg_wins_array
+  #   avg_percent_wins = (avg_wins_array.sum/avg_wins_array.size).round(2)
+  # end
 end

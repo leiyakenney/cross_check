@@ -22,4 +22,13 @@ class GameStatsTest < Minitest::Test
   def test_favorite_opponent
     assert_equal 'Penguins', @tracker.favorite_opponent("6")
   end
+
+  def test_rival
+    assert_equal 'Rangers', @tracker.rival("6")
+  end
+
+  def test_head_to_head
+    expected = {"Rangers"=>0.8, "Penguins"=>1.0}
+    assert_equal expected, @tracker.head_to_head("6")
+  end
 end

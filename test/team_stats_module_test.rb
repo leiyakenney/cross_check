@@ -1,6 +1,6 @@
 require './test/test_helper'
 
-class GameStatsTest < Minitest::Test
+class TeamStatsTest < Minitest::Test
 
   def setup
     game_path = './data/dummy_data/dummy_data_game.csv'
@@ -22,6 +22,13 @@ class GameStatsTest < Minitest::Test
   def test_favorite_opponent
     assert_equal 'Penguins', @tracker.favorite_opponent("6")
   end
+
+  def test_biggest_team_blowout
+    assert_equal 1, @tracker.biggest_team_blowout("3")
+  end
+
+  def test_worst_loss
+    assert_equal 3, @tracker.worst_loss("3")
 
   def test_rival
     assert_equal 'Rangers', @tracker.rival("6")

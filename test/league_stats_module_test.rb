@@ -16,7 +16,7 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_convert_id_to_name
-    assert_equal 'Devils', @tracker.convert_id_to_name(1)
+    assert_equal 'Devils', @tracker.convert_id_to_name("1")
   end
 
   def test_highest_scoring_home_team
@@ -27,12 +27,12 @@ class LeagueStatsTest < Minitest::Test
     assert_equal 'Penguins', @tracker.lowest_scoring_home_team
   end
 
-  def test_highest_scoring_away_team
-    assert_equal 'Bruins', @tracker.highest_scoring_away_team
+  def test_highest_scoring_visitor
+    assert_equal 'Bruins', @tracker.highest_scoring_visitor
   end
 
-  def test_lowest_scoring_home_team
-    assert_equal 'Penguins', @tracker.lowest_scoring_away_team
+  def test_lowest_scoring_visitor
+    assert_equal 'Penguins', @tracker.lowest_scoring_visitor
   end
 
   def test_count_of_teams
@@ -40,34 +40,64 @@ class LeagueStatsTest < Minitest::Test
   end
 
   def test_best_defense
-      #Needs work, no method
-    skip
-    assert_equal "Senators", @tracker.best_defense
+    assert_equal "Bruins", @tracker.best_defense
   end
 
   def test_worst_defense
-    #Needs work, no method
-    skip
-    assert_equal "Penguins", @tracker.worst_denfense
+    assert_equal "Canadiens", @tracker.worst_defense
   end
 
   def test_best_offense
-
     assert_equal "Bruins", @tracker.best_offense
   end
 
   def test_worst_offense
-    #need to double check correct value
-
     assert_equal "Penguins", @tracker.worst_offense
   end
 
+  def test_winningest_team
+    assert_equal "Bruins", @tracker.winningest_team
+  end
+
+
+  def test_total_games_played
+    expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>7, "16"=>7, "9"=>3, "8"=>3}
+    assert_equal expected, @tracker.total_games_played
+  end
+
+  def test_total_goals_against
+    expected = {"3"=>16, "6"=>12, "5"=>12, "17"=>16, "16"=>15, "9"=>6, "8"=>11}
+    assert_equal expected, @tracker.total_goals_against
+  end
+
   def test_best_fans
-    skip
-    #Name of the team with biggest difference between home and away win percentages.
-    #1. Percentage of home wins 0.00
-    #2. Percentage of away wins 0.00
-    #3. Biggest difference - absolute value
-    #4. Team 5 with difference of 3.5
+    assert_equal "Rangers", @tracker.best_fans
+  end
+
+  # def test_change_hash_ids_to_name
+  #   expected = {"Penguins"=>5, "Senators"=>9, "Flyers"=>4, "Devils"=>1}
+  #   assert_equal expected, @tracker.change_hash_ids_to_name(@tracker.total_games_by_game_team)
+  # end
+
+  def test_total_home_wins
+    expected = {"6"=>5, "3"=>2, "5"=>2}
+    assert_equal expected, @tracker.total_home_wins_by_team
+  end
+
+  def test_total_away_wins
+    expected = {"3"=>3, "6"=>4, "5"=>2, "17"=>1}
+    assert_equal expected, @tracker.total_away_wins_by_team
+  end
+
+  def test_worst_fans
+    assert_equal [], @tracker.worst_fans
+  end
+
+  def test_most_goals_scored
+    assert_equal 6, @tracker.most_goals_scored(6)
+  end
+
+  def test_fewest_goals_scored
+    assert_equal 0, @tracker.fewest_goals_scored(5)
   end
 end

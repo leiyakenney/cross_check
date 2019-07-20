@@ -1,62 +1,62 @@
-require 'pry'
 module LeagueStats
 
+  def high_low_scoring_home_team
+    high_team = home_team_goals.minmax_by do |team, goals|
+      (goals.to_f / home_games_played[team])
+    end
+  end
+
   def highest_scoring_home_team
-    high_team = home_team_goals.max_by do |team, goals|
-          (goals.to_f / home_games_played[team])
-      end
-    convert_id_to_name(high_team[0])
+    convert_id_to_name(high_low_scoring_home_team[1][0])
   end
 
   def lowest_scoring_home_team
-    low_team = home_team_goals.min_by do |team, goals|
-          (goals.to_f / home_games_played[team])
-      end
-    convert_id_to_name(low_team[0])
+    convert_id_to_name(high_low_scoring_home_team[0][0])
+  end
+
+  def high_low_scoring_visitor
+    away_high = away_team_goals.minmax_by do |id, goals|
+      (goals.to_f / away_games_played[id])
+    end
   end
 
   def highest_scoring_visitor
-    away_high = away_team_goals.max_by do |id, goals|
-      (goals.to_f / away_games_played[id])
-    end
-    convert_id_to_name(away_high[0])
+    convert_id_to_name(high_low_scoring_visitor[1][0])
   end
 
   def lowest_scoring_visitor
-    away_low = away_team_goals.min_by do |id, goals|
-      (goals.to_f / away_games_played[id])
-    end
-    convert_id_to_name(away_low[0])
+    convert_id_to_name(high_low_scoring_visitor[0][0])
   end
 
   def count_of_teams
     @teams.count {|team| team.team_id}
   end
 
-  def best_offense
+  def best_worst_offense
     avg_offense = average_offense
-    best_offense_team = avg_offense.max_by {|team_id, avg_goals| avg_goals}
-    convert_id_to_name(best_offense_team[0])
+    best_offense_team = avg_offense.minmax_by {|team_id, avg_goals| avg_goals}
   end
 
+  def best_offense
+    convert_id_to_name(best_worst_offense[1][0])
+  end
+  #
   def worst_offense
-    avg_offense = average_offense
-    best_offense_team = avg_offense.min_by {|team_id, avg_goals| avg_goals}
-    convert_id_to_name(best_offense_team[0])
+    convert_id_to_name(best_worst_offense[0][0])
+  end
+
+  def best_worst_defense
+    top_defense = total_goals_against.minmax_by do |team_id, goals|
+      (goals.to_f/ total_games_played[team_id])
+    end
   end
 
   def best_defense
-    top_defense = total_goals_against.min_by do |team_id, goals|
-      (goals.to_f/ total_games_played[team_id])
-    end
-    convert_id_to_name(top_defense[0])
+    convert_id_to_name(best_worst_defense[0][0])
   end
 
   def worst_defense
-    lowest_defense = total_goals_against.max_by do |team_id, goals|
-      (goals.to_f/ total_games_played[team_id])
-    end
-    convert_id_to_name(lowest_defense[0])
+    convert_id_to_name(best_worst_defense[1][0])
   end
 
   def winningest_team
@@ -78,9 +78,7 @@ module LeagueStats
         worst_fans_arr << team.team_id
       end
     end
-    worst_fans_arr.uniq.map do |worst|
-      convert_id_to_name(worst)
-    end
+    worst_fans_arr.uniq.map {|worst| convert_id_to_name(worst)}
   end
 
   def best_fans

@@ -13,4 +13,18 @@ module TeamStats
     best_opponent = games_played_vs_opponent_percentage(team_id).max_by {|id, pw| pw}
     convert_id_to_name(best_opponent[0])
   end
+
+  def most_goals_scored(id)
+    team_games = @game_teams.select do |game|
+       game.team_id == id
+     end
+    team_games.max_by {|game| game.goals}.goals
+  end
+
+  def fewest_goals_scored(id)
+    team_games = @game_teams.select do |game|
+       game.team_id == id
+     end
+    team_games.min_by {|game| game.goals}.goals
+  end
 end

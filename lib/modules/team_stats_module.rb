@@ -127,16 +127,16 @@ module TeamStats
   end
 
   def best_season(team_id)
-    best_worst_season(team_id)[1][0].to_i
+    best_worst_season(team_id)[1][0]
   end
 
   def worst_season(team_id)
-    best_worst_season(team_id)[0][0].to_i
+    best_worst_season(team_id)[0][0]
   end
 
   def average_win_percentage(team_id)
     #{3=>10.0, 6=>28.0, 5=>2.0, 17=>1.0}
   average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
   average_win_by_team.round(2)
-  end 
+  end
 end

@@ -100,4 +100,8 @@ class LeagueStatsTest < Minitest::Test
   def test_most_goals_scored
     assert_equal 6, @tracker.most_goals_scored(6)
   end
+
+  def test_least_goals_scored
+    assert_equal 0, @tracker.least_goals_scored(5)
+  end
 end

@@ -197,4 +197,11 @@ module LeagueStatHelpers
      end
     team_games.max_by {|game| game.goals}.goals
   end
+
+  def least_goals_scored(id)
+    team_games = @game_teams.select do |game|
+       game.team_id == id
+     end
+    team_games.min_by {|game| game.goals}.goals
+  end
 end

@@ -29,4 +29,15 @@ class LeagueStatsHelperTest < Minitest::Test
     expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>7, "16"=>7, "9"=>3, "8"=>3}
     assert_equal expected, @tracker.total_games_played
   end
+
+  def test_home_team_goals
+    expected = {"6"=>14, "3"=>5, "5"=>1, "16"=>11, "17"=>8, "8"=>5, "9"=>6}
+    assert_equal expected, @tracker.home_team_goals
+  end
+
+  def test_away_team_goals
+    expected = {"3"=>5, "6"=>14, "5"=>1, "17"=>7, "16"=>5, "9"=>5, "8"=>1}
+
+    assert_equal expected, @tracker.away_team_goals
+  end
 end

@@ -14,9 +14,13 @@ class TeamStatsTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
-  def test_best_season
-    # binding.pry
-    assert_equal 1000000, @tracker.best_season(3)
+  def test_wins_by_season
+    #{"20122013"=>4, "20132014"=>2, "20142015"=>2}
+    assert_equal 10000, @tracker.team_wins_by_season(6)
   end
 
+  def test_num_games_by_season
+    #{"20122013"=>4, "20132014"=>3, "20142015"=>2}
+    assert_equal 10000, @tracker.num_games_by_season(6)
+  end
 end

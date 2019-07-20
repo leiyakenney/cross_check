@@ -16,26 +16,26 @@ class TeamStatsTest < Minitest::Test
 
   def test_wins_by_season
     #{"20122013"=>4, "20132014"=>2, "20142015"=>2}
-    assert_equal 10000, @tracker.team_wins_by_season(6)
+    assert_equal [{"20122013"=>4, "20132014"=>2, "20142015"=>2}], @tracker.team_wins_by_season(6)
   end
 
   def test_num_games_by_season
     #{"20122013"=>4, "20132014"=>3, "20142015"=>2}
-    assert_equal 10000, @tracker.num_games_by_season(6)
+    assert_equal [{"20122013"=>4, "20132014"=>3, "20142015"=>2}], @tracker.num_games_by_season(6)
   end
 
   def test_avg_win_percent_by_season
-
-    assert_equal 10000, @tracker.avg_win_percent_by_season(6)
+    #{"20122013"=>1.0, "20132014"=>0.6666666666666666, "20142015"=>1.0}
+    assert_equal [{"20122013"=>1.0, "20132014"=>0.6666666666666666, "20142015"=>1.0}], @tracker.avg_win_percent_by_season(6)
   end
 
   def test_best_season
-
+    #What if two seasons are equally good?
     assert_equal 20122013, @tracker.best_season(6)
   end
 
   def test_worst_season
-
+    #What if two seasons are equally bad?
     assert_equal 20132014, @tracker.worst_season(6)
   end
 end

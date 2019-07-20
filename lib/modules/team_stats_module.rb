@@ -14,20 +14,6 @@ module TeamStats
     convert_id_to_name(best_opponent[0])
   end
 
-  def most_goals_scored(id)
-    team_games = @game_teams.select do |game|
-       game.team_id == id
-     end
-    team_games.max_by {|game| game.goals}.goals
-  end
-
-  def fewest_goals_scored(id)
-    team_games = @game_teams.select do |game|
-       game.team_id == id
-     end
-    team_games.min_by {|game| game.goals}.goals
-  end
-
   def biggest_team_blowout(team_id)
     blowout_amt = 0
     @games.each do |game|
@@ -87,7 +73,7 @@ module TeamStats
     season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
   end
 
-      def team_wins_by_season(team_id)
+  def team_wins_by_season(team_id)
     team_wins_by_season = Hash.new(0)
     @games.map do |game|
       if team_id == game.away_team_id && (game.away_goals > game.home_goals)

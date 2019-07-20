@@ -52,11 +52,11 @@ class TeamStatsTest < Minitest::Test
   end
 
   def test_best_season
-    assert_equal 20122013, @tracker.best_season("6")
+    assert_equal "20122013", @tracker.best_season("6")
   end
 
   def test_worst_season
-    assert_equal 20132014, @tracker.worst_season("6")
+    assert_equal "20132014", @tracker.worst_season("6")
   end
 
   def test_average_win_percentage

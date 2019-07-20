@@ -4,7 +4,7 @@ class Team
 
   def initialize(data)
     @team_id = data['team_id'].to_i
-    @franchise_id = data['franchiseid'].to_i
+    @franchise_id = data['franchiseId'].to_i
     @short_name = data['shortName']
     @team_name = data['teamName']
     @abbreviation = data['abbreviation']

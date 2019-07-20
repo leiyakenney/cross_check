@@ -19,4 +19,7 @@ class GameStatsTest < Minitest::Test
     assert_equal expected, @tracker.team_info("1")
   end
 
+  def test_favorite_opponent
+    assert_equal 'Penguins', @tracker.favorite_opponent("6")
+  end
 end

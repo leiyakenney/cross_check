@@ -1,17 +1,16 @@
-require 'pry'
 module LeagueStats
 
   def highest_scoring_home_team
     high_team = home_team_goals.max_by do |team, goals|
-          (goals.to_f / home_games_played[team])
-      end
+      (goals.to_f / home_games_played[team])
+    end
     convert_id_to_name(high_team[0])
   end
 
   def lowest_scoring_home_team
     low_team = home_team_goals.min_by do |team, goals|
-          (goals.to_f / home_games_played[team])
-      end
+      (goals.to_f / home_games_played[team])
+    end
     convert_id_to_name(low_team[0])
   end
 

@@ -1,4 +1,3 @@
-require 'pry'
 module GameStats
 
   def highest_total_score

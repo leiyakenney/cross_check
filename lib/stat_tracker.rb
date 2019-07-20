@@ -11,14 +11,14 @@ require_relative './modules/team_stat_helper_module'
 require_relative './modules/global_helper_module'
 
 class StatTracker
-    include GameStats
-    include GlobalHelpers
-    include LeagueStats
-    include LeagueStatHelpers
-    include TeamStats
-    include TeamStatHelpers
+  include GameStats
+  include GlobalHelpers
+  include LeagueStats
+  include LeagueStatHelpers
+  include TeamStats
+  include TeamStatHelpers
 
-attr_reader :games, :teams, :game_teams
+  attr_reader :games, :teams, :game_teams
 
   def initialize(games, teams, game_teams)
     @games = games

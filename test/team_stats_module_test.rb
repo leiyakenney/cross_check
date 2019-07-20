@@ -22,6 +22,14 @@ class TeamStatsTest < Minitest::Test
   def test_favorite_opponent
     assert_equal 'Penguins', @tracker.favorite_opponent("6")
   end
+  
+  def test_most_goals_scored
+    assert_equal 6, @tracker.most_goals_scored(6)
+  end
+
+  def test_fewest_goals_scored
+    assert_equal 0, @tracker.fewest_goals_scored(5)
+  end
 
   def test_biggest_team_blowout
     assert_equal 1, @tracker.biggest_team_blowout("3")

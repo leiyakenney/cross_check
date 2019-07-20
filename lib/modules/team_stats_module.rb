@@ -1,5 +1,6 @@
 module TeamStats
 
+  #BEST/WORST SEASON
   #find the total number of wins for a team by season
   def team_wins_by_season(team_id)
 
@@ -16,6 +17,7 @@ module TeamStats
     team_wins_by_season
   end
 
+  # BEST/WORST SEASON
   #find the total number of games played for a team by season
   def num_games_by_season(team_id)
     num_games_by_season = Hash.new(0)
@@ -27,6 +29,7 @@ module TeamStats
     num_games_by_season
   end
 
+  # BEST/WORST SEASON
   #finds the avg percent win for a team by season
   def avg_win_percent_by_season(team_id)
     number_game_by_season = num_games_by_season(team_id)
@@ -38,38 +41,25 @@ module TeamStats
     avg_win_percent_by_season
   end
 
+  # BEST/WORST SEASON
   #finds best season by finding highest avg and returning season
   def best_worst_season(team_id)
     avg_win_percent_by_season = avg_win_percent_by_season(team_id).minmax_by {|season, avg_win| avg_win}
     avg_win_percent_by_season
   end
 
+  # BEST/WORST SEASON
   def best_season(team_id)
     best_worst_season(team_id)[1][0].to_i
   end
 
+  # BEST/WORST SEASON
   def worst_season(team_id)
     best_worst_season(team_id)[0][0].to_i
   end
 
-  #finds worst season by finding lowest avg and returning season
-  # def worst_season(team_id)
-  #   avg_win_percent_by_season = avg_win_percent_by_season(team_id).min_by {|season, avg_win| avg_win}
-  #   avg_win_percent_by_season[0].to_i
-  # end
-
-
-  #Fiddling around with avg_percent_wins by season for team
-  #Might be wrong... taking average of season average.
-  # def average_win_percentage(team_id)
-  #   avg_win_percent_by_season = avg_win_percent_by_season(team_id)
-  #
-  #   avg_wins_array = []
-  #     avg_win_percent_by_season.map do |season, avg_wins|
-  #       avg_wins_array << avg_wins
-  #     end
-  #
-  #   avg_wins_array
-  #   avg_percent_wins = (avg_wins_array.sum/avg_wins_array.size).round(2)
-  # end
+  def average_win_percentage(team_id)
+    #{3=>10.0, 6=>28.0, 5=>2.0, 17=>1.0}
+  average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
+  end
 end

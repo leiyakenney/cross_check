@@ -51,7 +51,7 @@ class TeamStatsTest < Minitest::Test
   end
 
   def test_average_win_percentage
-    skip
+    # skip
     #Taking the average of the season averages?
     assert_equal 0.89, @tracker.average_win_percentage(6)
   end

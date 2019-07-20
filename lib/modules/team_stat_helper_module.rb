@@ -1,5 +1,5 @@
 module TeamStatHelpers
-  
+
   def games_played_against_opponents(team_id)
     opponent_games_played = Hash.new(0)
     @games.each do |game|
@@ -31,4 +31,7 @@ module TeamStatHelpers
     end
     percentage_won
   end
+
+
+
 end

@@ -1,5 +1,5 @@
 module LeagueStatHelpers
-  
+
   def home_games_played
     games_home_played = Hash.new(0)
     @games.each do |game|
@@ -189,5 +189,19 @@ module LeagueStatHelpers
       difference_home_vs_away_won[team_id] = home_win - percent_of_away_games_won[team_id]
     end
     difference_home_vs_away_won
+  end
+
+  def most_goals_scored(id)
+    team_games = @game_teams.select do |game|
+       game.team_id == id
+     end
+    team_games.max_by {|game| game.goals}.goals
+  end
+
+  def fewest_goals_scored(id)
+    team_games = @game_teams.select do |game|
+       game.team_id == id
+     end
+    team_games.min_by {|game| game.goals}.goals
   end
 end

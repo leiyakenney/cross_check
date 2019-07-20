@@ -92,4 +92,12 @@ class LeagueStatsTest < Minitest::Test
   def test_worst_fans
     assert_equal [], @tracker.worst_fans
   end
+
+  def test_most_goals_scored
+    assert_equal 6, @tracker.most_goals_scored(6)
+  end
+
+  def test_fewest_goals_scored
+    assert_equal 0, @tracker.fewest_goals_scored(5)
+  end
 end

@@ -38,4 +38,34 @@ class TeamStatsTest < Minitest::Test
     expected = {"Rangers"=>0.8, "Penguins"=>1.0}
     assert_equal expected, @tracker.head_to_head("6")
   end
+    
+      def test_wins_by_season
+    assert_equal ({"20122013"=>4, "20132014"=>2, "20142015"=>2}), @tracker.team_wins_by_season(6)
+  end
+
+  def test_num_games_by_season
+    assert_equal ({"20122013"=>4, "20132014"=>3, "20142015"=>2}), @tracker.num_games_by_season(6)
+  end
+
+  def test_avg_win_percent_by_season
+    assert_equal ({"20122013"=>1.0, "20132014"=>0.6666666666666666, "20142015"=>1.0}), @tracker.avg_win_percent_by_season(6)
+  end
+
+  def test_best_worst_season
+    assert_equal [["20132014", 0.6666666666666666], ["20122013", 1.0]], @tracker.best_worst_season(6)
+  end
+
+  def test_best_season
+    assert_equal 20122013, @tracker.best_season(6)
+  end
+
+  def test_worst_season
+    assert_equal 20132014, @tracker.worst_season(6)
+  end
+
+  def test_average_win_percentage
+    # skip
+    #Taking the average of the season averages?
+    assert_equal 0.89, @tracker.average_win_percentage(6)
+  end 
 end

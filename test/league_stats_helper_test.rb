@@ -47,7 +47,6 @@ class LeagueStatsHelperTest < Minitest::Test
 
   def test_total_games_by_game_team
     expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>1}
-
     assert_equal expected, @tracker.total_games_by_game_team
   end
 end

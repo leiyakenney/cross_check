@@ -56,7 +56,8 @@ module TeamStatHelpers
     post_season
   end
 
-  def method_name
-
+  def sort_by_season
+    new_hash = Hash.new
+    new_hash = @games.sort_by {|k, game| game["season"]}
   end
 end

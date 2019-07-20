@@ -14,6 +14,7 @@ module TeamStats
     convert_id_to_name(best_opponent[0])
   end
 
+<<<<<<< HEAD
   # def most_goals_scored(id)
   #   team_games = @game_teams.select do |game|
   #      game.team_id == id
@@ -27,7 +28,9 @@ module TeamStats
   #    end
   #   team_games.min_by {|game| game.goals}.goals
   # end
-  
+
+=======
+>>>>>>> b421fa09ce6501736e8b586f5e22479a15fd61ab
   def biggest_team_blowout(team_id)
     blowout_amt = 0
     @games.each do |game|

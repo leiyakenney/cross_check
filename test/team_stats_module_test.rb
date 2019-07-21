@@ -109,9 +109,4 @@ class TeamStatsTest < Minitest::Test
     }
     assert_equal expected, @tracker.seasonal_summary("6")
   end
-
-  def test_sort_by_season
-    binding.pry
-  assert_equal 10000, @tracker.sort_by_season
-  end
 end

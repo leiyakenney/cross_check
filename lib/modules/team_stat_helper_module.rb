@@ -53,7 +53,7 @@ module TeamStatHelpers
         collect_games_by_season(team_id)[season] = (reg_hash[:regular_season] = game)
       end
     end
-    binding.pry
+  
     collect_games_by_season(team_id)
   end
 
@@ -80,12 +80,4 @@ module TeamStatHelpers
     }
     post_season
   end
-
-<<<<<<< HEAD
-  def sort_by_season
-    new_hash = Hash.new
-    new_hash = @games.sort_by {|k, game| game["season"]}
-  end
-=======
->>>>>>> a211e1f8f21fa1eb045230c9a1303010a1228fdb
 end

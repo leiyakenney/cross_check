@@ -31,7 +31,7 @@ module SeasonStat
 
     total_goals_by_season = Hash.new(0)
     @game_teams.map do |game|
-      binding.pry
+    
       if game_id_in_season.any? game.game_id
         total_goals_by_season[game.team_id] += game.goals
       end

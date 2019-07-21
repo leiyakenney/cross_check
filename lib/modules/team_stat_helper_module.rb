@@ -37,6 +37,7 @@ module TeamStatHelpers
   #========= SEASONAL SUMMARY START =============
 
   def win_percentage(games, team_id)
+
     num_won = 0
     games.each do |game|
       if team_id == game.home_team_id && game.home_goals > game.away_goals
@@ -45,11 +46,9 @@ module TeamStatHelpers
         num_won += 1
       end
     end
-    percent_won = (num_won/games.count).to_f
+    total_games = (games.count/2).to_f
+    percent_won = num_won/total_games
   end
-
-
-
 
 
   def total_goals_scored(games, team_id)
@@ -79,46 +78,33 @@ module TeamStatHelpers
 
   def average_goals_scored(games, team_id)
     total_scored = total_goals_scored(games, team_id)
-    total_games = (games.count/2)
+    total_games = (games.count/2).to_f
 
-    average_goals = total_scored/total_games
+    avg_goals = total_scored/total_games
   end
 
   def average_goals_against(games, team_id)
-  'hamburger'
+    total_against = total_goals_against(games, team_id)
+    total_games = (games.count/2).to_f
+
+    avg_against = total_against/total_games 
   end
 
 
 
 #=========== SEASONAL SUMMARY START ===========
 
-  #Seasonal_summary method
-  def collect_games_by_season(team_id)
-    # season_hash = Hash.new
-    @games.each_with_object(Hash.new) do |game,hash|
-      # hash[game.season] ||= {'regular_season' => [], 'postseason' => []}
-      if game.home_team_id == team_id || game.away_team_id == team_id
 
-        # if game.type == 'P'
-        #   hash[game.season]['postseason'] << game
-        # elsif game.type == 'R'
-        #   hash[game.season]['regular_season'] << game
-        # end
+  def collect_games_by_season(team_id)
+    @games.each_with_object(Hash.new) do |game,hash|
+      if game.home_team_id == team_id || game.away_team_id == team_id
         if hash[game.season].nil?
           hash[game.season] = [game]
         else
-          hash[game.season] << game # this is the important one!
+          hash[game.season] << game
         end
       end
     end
-
-    # season_hash
-    # games_with_team = @games.find_all do |game|
-    #   game.home_team_id == team_id || game.away_team_id == team_id
-    # end
-    # games_with_team.group_by do |game|
-    #   game.season
-    # end
   end
 
   #Seasonal_summary method

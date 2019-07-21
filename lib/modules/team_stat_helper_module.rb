@@ -37,19 +37,51 @@ module TeamStatHelpers
   #========= SEASONAL SUMMARY START =============
 
   def win_percentage(games, team_id)
-    return 'chicken'
+    num_won = 0
+    games.each do |game|
+      if team_id == game.home_team_id && game.home_goals > game.away_goals
+        num_won += 1
+      elsif team_id == game.away_team_id && game.home_goals < game.away_goals
+        num_won += 1
+      end
+    end
+    percent_won = (num_won/games.count).to_f
   end
+
+
+
+
 
   def total_goals_scored(games, team_id)
-    'chicken'
+    num_goals = 0
+    games.each do |game|
+      if team_id == game.home_team_id
+        num_goals += game.home_goals
+      elsif team_id == game.away_team_id
+        num_goals += game.away_goals
+      end
+    end
+    total_number_goals = num_goals/2
   end
 
+
   def total_goals_against(games, team_id)
-    'taco'
+    num_goals_against = 0
+    games.each do |game|
+      if team_id == game.home_team_id
+        num_goals_against += game.away_goals
+      elsif team_id == game.away_team_id
+        num_goals_against += game.home_goals
+      end
+    end
+    total_number_goals_against = num_goals_against/2
   end
 
   def average_goals_scored(games, team_id)
-    'sushi'
+    total_scored = total_goals_scored(games, team_id)
+    total_games = (games.count/2)
+
+    average_goals = total_scored/total_games
   end
 
   def average_goals_against(games, team_id)
@@ -160,7 +192,7 @@ module TeamStatHelpers
   def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
-    season_summary_of_games.transform_values! do |sub_hash|
+    season_summary_of_games.map do |season, sub_hash|
       #season_summary_of_games.each do |season, sub_hash|
       sub_hash.transform_values do |games|
         {:win_percentage => win_percentage(games, team_id),

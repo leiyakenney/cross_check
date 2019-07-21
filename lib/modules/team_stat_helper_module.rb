@@ -33,6 +33,11 @@ module TeamStatHelpers
     percentage_won
   end
 
+  def win_percentage(games)
+    p 'hi'
+  end
+
+#=========== SEASONAL SUMMARY START ===========
 
   #Seasonal_summary method
   def collect_games_by_season(team_id)
@@ -83,33 +88,35 @@ module TeamStatHelpers
   end
 
   #Seasonal_summary method
-  def setup_reg_season_hash(team_id)
-    reg_season = {}
-    reg_season[:regular_season] = {
-      :win_percentage => 0,
-      :total_goals_scored => 0,
-      :total_goals_against => 0,
-      :average_goals_scored => 0,
-      :average_goals_against => 0,
-    }
-    reg_season
-  end
+  #Is this actually doing anything?
+  # def setup_reg_season_hash(team_id)
+  #   reg_season = {}
+  #   reg_season[:regular_season] = {
+  #     :win_percentage => 0,
+  #     :total_goals_scored => 0,
+  #     :total_goals_against => 0,
+  #     :average_goals_scored => 0,
+  #     :average_goals_against => 0,
+  #   }
+  #   reg_season
+  # end
 
   #Seasonal_summary method
-  def setup_post_season_hash(team_id)
-    post_season = {}
-    post_season[:postseason] = {
-      :win_percentage => 0,
-      :total_goals_scored => 0,
-      :total_goals_against => 0,
-      :average_goals_scored => 0,
-      :average_goals_against => 0,
-    }
-    post_season
-  end
+  #Is this actually doing anything?
+  # def setup_post_season_hash(team_id)
+  #   post_season = {}
+  #   post_season[:postseason] = {
+  #     :win_percentage => 0,
+  #     :total_goals_scored => 0,
+  #     :total_goals_against => 0,
+  #     :average_goals_scored => 0,
+  #     :average_goals_against => 0,
+  #   }
+  #   post_season
+  # end
 
   #Seasonal_summary method
-  def season_summary(team_id)
+  def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
     season_summary_of_games.each do |season, sub_hash|

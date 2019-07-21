@@ -89,30 +89,37 @@ class TeamStatsTest < Minitest::Test
 #=========== SEASONAL SUMMARY START ===========
 
   #seasonal_summary
+  #returns a hash with seasons as key and game objects as value in array
   def test_collect_games_by_season
     skip
-    assert_equal 100000, @tracker.collection_games_by_season("6")
+    assert_equal 100000, @tracker.collect_games_by_season("6")
   end
 
   #seasonal_summary
+  #returns a hash with seasons as key, sub keys as post/pre season, and
+  #game objects as values of post/pre season in a array
   def test_reg_vs_post
     skip
     assert_equal 100000, @tracker.reg_vs_post("6")
   end
 
   #seasonal_summary
+  #helper method of reg_vs_post
+  #returns postseason or preseason in replace of P or R
   def test_type_to_season
     skip
     assert_equal 100000, @tracker.type_to_season("P")
   end
 
   #seasonal_summary
+  #returns setup for reg_season hash
   def test_setup_reg_season_hash
     skip
-    assert_equal 100000, @tracker.test_setup_reg_season_hash("6")
+    assert_equal 100000, @tracker.setup_reg_season_hash("6")
   end
 
   #seasonal_summary
+  #returns setup for post_season hash
   def test_setup_post_season_hash
     skip
     assert_equal 10000, @tracker.setup_post_season_hash("6")
@@ -120,7 +127,7 @@ class TeamStatsTest < Minitest::Test
 
   #seasonal_summary
   def test_seasonal_summary
-    skip
+    # skip
     expected = {"20122013" => {
         :regular_season => {
           :win_percentage => 0.68,

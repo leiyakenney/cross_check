@@ -85,11 +85,12 @@ class TeamStatsTest < Minitest::Test
   end
 
   def test_reg_vs_post
-    assert_equal "", @tracker.reg_vs_post("6")
+    # assert_equal "", @tracker.reg_vs_post("6")
+    assert_equal "", @tracker.season_summary("6")
   end
 
   def test_seasonal_summary
-    skip
+    # skip
     expected = {"20122013" => {
         :regular_season => {
           :win_percentage => 0.68,

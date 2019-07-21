@@ -34,27 +34,71 @@ module TeamStatHelpers
   end
 
   def collect_games_by_season(team_id)
-    season_hash = Hash.new
-    @games.each do |game|
+    # season_hash = Hash.new
+    @games.each_with_object(Hash.new) do |game,hash|
+      # hash[game.season] ||= {'regular_season' => [], 'postseason' => []}
       if game.home_team_id == team_id || game.away_team_id == team_id
-        season_hash[game.season] = game
+
+        # if game.type == 'P'
+        #   hash[game.season]['postseason'] << game
+        # elsif game.type == 'R'
+        #   hash[game.season]['regular_season'] << game
+        # end
+        if hash[game.season].nil?
+          hash[game.season] = [game]
+        else
+          hash[game.season] << game # this is the important one!
+        end
       end
     end
-    season_hash
+
+    # season_hash
+    # games_with_team = @games.find_all do |game|
+    #   game.home_team_id == team_id || game.away_team_id == team_id
+    # end
+    # games_with_team.group_by do |game|
+    #   game.season
+    # end
+  end
+
+  def season_summary(team_id)
+    season_summary_of_games = reg_vs_post(team_id)
+    binding.pry
+    season_summary_of_games.each do |season, sub_hash|
+      sub_hash.transform_values do |games|
+        {:win_percentage => win_percentage(games),
+        :total_goals_scored => total_goals_scored(games),
+        :total_goals_against => total_goals_against(games),
+        :average_goals_scored => 3,
+        :average_goals_against => 2.2}
+      end
+    end
   end
 
   def reg_vs_post(team_id)
-    reg_hash = {}
-    post_hash = {}
-    collect_games_by_season(team_id).each do |season, game|
-      if game.type == "P"
-        collect_games_by_season(team_id)[season] = (post_hash[:postseason] = game)
-      elsif game.type == "R"
-        collect_games_by_season(team_id)[season] = (reg_hash[:regular_season] = game)
+    # reg_hash = {}
+    # post_hash = {}
+
+    games_by_season = collect_games_by_season(team_id)
+    games_by_season.transform_values do |games|
+      games.group_by do |game|
+        type_to_season(game.type)
       end
+      # if game.type == "P"
+      #   games_by_season[season] = (post_hash[:postseason] = game)
+      # elsif game.type == "R"
+      #   games_by_season[season] = (reg_hash[:regular_season] = game)
+      # end
     end
-    binding.pry
-    collect_games_by_season(team_id)
+    # binding.pry
+  end
+
+  def type_to_season(type)
+    if type == 'P'
+      return 'postseason'
+    elsif type == 'R'
+      return 'regular_season'
+    end
   end
 
   def setup_reg_season_hash(team_id)
@@ -81,11 +125,10 @@ module TeamStatHelpers
     post_season
   end
 
-<<<<<<< HEAD
+#this is mine
   def sort_by_season
     new_hash = Hash.new
     new_hash = @games.sort_by {|k, game| game["season"]}
   end
-=======
->>>>>>> a211e1f8f21fa1eb045230c9a1303010a1228fdb
+
 end

@@ -45,4 +45,11 @@ module SeasonStat
   end
 
   def minmax_shot_ratio_by_season(season)
+    shot_ratio_by_season = shot_ratio_by_season(season)
+    shot_ratio_by_season.minmax_by {|team_id, shot_ratio| shot_ratio}
+  end
+
+  def most_accurate_team(season)
+    minmax_shot_ratio_by_season(season)[1][0]
+  end
 end

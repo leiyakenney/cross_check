@@ -33,7 +33,17 @@ class SeasonStatsTest < Minitest::Test
   end
 
   def test_shot_ratio_by_season
-
+    skip
   assert_equal 10000, @tracker.shot_ratio_by_season("20122013")
+  end
+
+  def test_minmax_shot_ratio_by_season
+    skip
+  assert_equal 100000, @tracker.minmax_shot_ratio_by_season("20122013")
+  end
+
+  def test_most_accurate_team
+
+  assert_equal 100000, @tracker.most_accurate_team("20122013")
   end
 end

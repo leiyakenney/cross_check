@@ -16,6 +16,7 @@ class SeasonStatsTest < Minitest::Test
   end
 
   def test_game_id_in_season
+    skip
     #no longer takes an argrument
 
   expected = ["2012030221", "2012030222", "2012030313", "2012030314", "2012030231", "2012030232", "2012030233", "2012030234", "2012030235", "2012030236", "2012030237", "2012030121", "2012030122", "2012030123"]
@@ -29,30 +30,30 @@ class SeasonStatsTest < Minitest::Test
   end
 
   def test_total_goals_by_season
-    skip
+    # skip
   expected = {"3"=>4, "6"=>11, "5"=>1, "17"=>1}
   assert_equal expected, @tracker.total_goals_by_season("20122013")
   end
 
   def test_shot_ratio_by_season
-    skip
+    # skip
   expected = {"3"=>18.0, "6"=>13.090909090909092, "5"=>80.0, "17"=>21.0}
   assert_equal expected, @tracker.shot_ratio_by_season("20122013")
   end
 
   def test_minmax_shot_ratio_by_season
-    skip
+    # skip
   expected = [["6", 13.090909090909092], ["5", 80.0]]
   assert_equal expected, @tracker.minmax_shot_ratio_by_season("20122013")
   end
 
   def test_most_accurate_team
-  skip
+  
   assert_equal "Bruins", @tracker.most_accurate_team("20122013")
   end
 
   def test_least_accurate_team
-  skip
+
   assert_equal "Penguins", @tracker.least_accurate_team("20122013")
   end
 end

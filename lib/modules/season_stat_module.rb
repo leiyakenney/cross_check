@@ -37,12 +37,11 @@ module SeasonStat
 
   #finds the total goals for each team within a given season
   def total_goals_by_season(season)
-    game_id_in_season = game_id_in_season(season)
 
     total_goals_by_season = Hash.new(0)
     @game_teams.map do |game|
 
-      if game_id_in_season.any? game.game_id
+      if game_id_in_season[season].any? game.game_id
         total_goals_by_season[game.team_id] += game.goals
       end
     end

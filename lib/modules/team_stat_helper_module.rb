@@ -1,3 +1,4 @@
+require 'pry'
 module TeamStatHelpers
 
   def games_played_against_opponents(team_id)
@@ -33,9 +34,29 @@ module TeamStatHelpers
     percentage_won
   end
 
+  #========= SEASONAL SUMMARY START =============
+
   def win_percentage(games)
-    p 'hi'
+    return 'chicken'
   end
+
+  def total_goals_scored(games)
+    'chicken'
+  end
+
+  def total_goals_against(games)
+    'taco'
+  end
+
+  def average_goals_scored(games)
+    'sushi'
+  end
+
+  def average_goals_against(games)
+  'hamburger'
+  end
+
+
 
 #=========== SEASONAL SUMMARY START ===========
 
@@ -101,8 +122,8 @@ module TeamStatHelpers
   #   reg_season
   # end
 
-  #Seasonal_summary method
-  #Is this actually doing anything?
+  # Seasonal_summary method
+  # Is this actually doing anything?
   # def setup_post_season_hash(team_id)
   #   post_season = {}
   #   post_season[:postseason] = {
@@ -115,12 +136,33 @@ module TeamStatHelpers
   #   post_season
   # end
 
+  # def seasonal_summary_2(team_id)
+  #   season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
+  # end
+
   #Seasonal_summary method
+  # def seasonal_summary(team_id)
+  #   season_summary_of_games = reg_vs_post(team_id)
+  #
+  #   test = season_summary_of_games.each do |season, sub_hash|
+  #     sub_hash.transform_values do |games|
+  #
+  #       {:win_percentage => win_percentage(games),
+  #       :total_goals_scored => total_goals_scored(games),
+  #       :total_goals_against => total_goals_against(games),
+  #       :average_goals_scored => average_goals_scored(games),
+  #       :average_goals_against => average_goals_against(games)}
+  #     end
+  #   end
+  #   test
+  # end
+
   def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
-    season_summary_of_games.each do |season, sub_hash|
+    season_summary_of_games.map do |season, sub_hash|
       sub_hash.transform_values do |games|
+
         {:win_percentage => win_percentage(games),
         :total_goals_scored => total_goals_scored(games),
         :total_goals_against => total_goals_against(games),

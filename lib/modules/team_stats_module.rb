@@ -69,9 +69,7 @@ module TeamStats
     names_vs_percentage
   end
 
-  # def seasonal_summary(team_id)
-  #   season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
-  # end
+
 
   def team_wins_by_season(team_id)
     team_wins_by_season = Hash.new(0)

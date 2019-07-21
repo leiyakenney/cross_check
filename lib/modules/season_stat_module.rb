@@ -1,16 +1,26 @@
 module SeasonStat
-
+#OLD - using arrays to return game_ids in season
 #finds all game_ids within a given season
- def game_id_in_season(season)
-   game_id_in_season = []
+ # def game_id_in_season(season)
+ #   game_id_in_season = []
+ #
+ #     @games.each do |game|
+ #       if game.season == season
+ #         game_id_in_season << game.game_id
+ #       end
+ #     end
+ #  game_id_in_season
+ #  end
 
-     @games.each do |game|
-       if game.season == season
-         game_id_in_season << game.game_id
-       end
-     end
-  game_id_in_season
-  end
+ #Hash with season as key and value(s) as game_ids
+ def game_id_in_season
+    game_id_by_season = Hash.new { |game_id_by_season, season| game_id_by_season[season] = [] }
+
+    @games.map do |game|
+      game_id_by_season[game.season].push(game.game_id)
+    end
+    game_id_by_season
+ end
 
   #finds the total shots for each team within a given season
   def total_shots_by_season(season)
@@ -31,7 +41,7 @@ module SeasonStat
 
     total_goals_by_season = Hash.new(0)
     @game_teams.map do |game|
-    
+
       if game_id_in_season.any? game.game_id
         total_goals_by_season[game.team_id] += game.goals
       end

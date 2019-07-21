@@ -22,8 +22,8 @@ class SeasonStatsTest < Minitest::Test
   assert_equal expected, @tracker.game_id_in_season
   end
 
-  def test_shot_ratio_within_season
-    skip
+  def test_total_shots_by_season
+    # skip
   total_shots_by_team = {"3"=>72, "6"=>144, "5"=>80, "17"=>21}
   assert_equal total_shots_by_team, @tracker.total_shots_by_season("20122013")
   end

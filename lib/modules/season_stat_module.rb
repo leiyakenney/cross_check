@@ -14,10 +14,11 @@ module SeasonStat
 
   #finds the total shots for each team within a given season
   def total_shots_by_season(season)
+    game_id_in_season = game_id_in_season(season)
 
     total_shots_by_season = Hash.new(0)
     @game_teams.map do |game|
-      if game_id_in_season(season).any? game.game_id
+      if game_id_in_season.any? game.game_id
         total_shots_by_season[game.team_id] += game.shots
       end
     end
@@ -26,10 +27,12 @@ module SeasonStat
 
   #finds the total goals for each team within a given season
   def total_goals_by_season(season)
+    game_id_in_season = game_id_in_season(season)
 
     total_goals_by_season = Hash.new(0)
     @game_teams.map do |game|
-      if game_id_in_season(season).any? game.game_id
+      binding.pry
+      if game_id_in_season.any? game.game_id
         total_goals_by_season[game.team_id] += game.goals
       end
     end
@@ -56,7 +59,7 @@ module SeasonStat
     convert_id_to_name(minmax_shot_ratio_by_season(season)[0][0])
   end
 
-  #finds team with highest shot-goal ratio within a given season 
+  #finds team with highest shot-goal ratio within a given season
   def least_accurate_team(season)
     convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
   end

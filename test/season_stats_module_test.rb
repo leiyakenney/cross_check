@@ -46,4 +46,9 @@ class SeasonStatsTest < Minitest::Test
 
   assert_equal 100000, @tracker.most_accurate_team("20122013")
   end
+
+  def test_least_accurate_team
+
+  assert_equal 100000, @tracker.least_accurate_team("20122013")
+  end
 end

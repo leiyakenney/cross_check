@@ -36,23 +36,23 @@ module TeamStatHelpers
 
   #========= SEASONAL SUMMARY START =============
 
-  def win_percentage(games)
+  def win_percentage(games, team_id)
     return 'chicken'
   end
 
-  def total_goals_scored(games)
+  def total_goals_scored(games, team_id)
     'chicken'
   end
 
-  def total_goals_against(games)
+  def total_goals_against(games, team_id)
     'taco'
   end
 
-  def average_goals_scored(games)
+  def average_goals_scored(games, team_id)
     'sushi'
   end
 
-  def average_goals_against(games)
+  def average_goals_against(games, team_id)
   'hamburger'
   end
 
@@ -160,14 +160,14 @@ module TeamStatHelpers
   def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
-    season_summary_of_games.map do |season, sub_hash|
+    season_summary_of_games.transform_values! do |sub_hash|
+      #season_summary_of_games.each do |season, sub_hash|
       sub_hash.transform_values do |games|
-
-        {:win_percentage => win_percentage(games),
-        :total_goals_scored => total_goals_scored(games),
-        :total_goals_against => total_goals_against(games),
-        :average_goals_scored => average_goals_scored(games),
-        :average_goals_against => average_goals_against(games)}
+        {:win_percentage => win_percentage(games, team_id),
+        :total_goals_scored => total_goals_scored(games, team_id),
+        :total_goals_against => total_goals_against(games, team_id),
+        :average_goals_scored => average_goals_scored(games, team_id),
+        :average_goals_against => average_goals_against(games, team_id)}
       end
     end
   end

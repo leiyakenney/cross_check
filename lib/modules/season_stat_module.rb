@@ -47,10 +47,10 @@ module SeasonStat
   end
 
   def most_accurate_team(season)
-    convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
+    convert_id_to_name(minmax_shot_ratio_by_season(season)[0][0])
   end
 
   def least_accurate_team(season)
-    convert_id_to_name(minmax_shot_ratio_by_season(season)[0][0])
+    convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
   end
 end

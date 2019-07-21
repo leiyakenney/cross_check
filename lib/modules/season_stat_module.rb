@@ -26,7 +26,6 @@ module SeasonStat
 
   #finds the total goals for each team within a given season, using the game_id_in_season hash
   def total_goals_by_season(season)
-
     game_id_in_season_hash = game_id_in_season
 
     total_goals_by_season = Hash.new(0)

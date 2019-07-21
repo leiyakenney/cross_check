@@ -15,6 +15,11 @@ class SeasonStatTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
+  def test_total_hits
+    assert_equal 643, @tracker.total_hits
+  end
+
+
   def test_most_hits
     assert_equal "Bruins", @tracker.most_hits(20122013)
   end

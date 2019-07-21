@@ -14,19 +14,6 @@ module TeamStats
     convert_id_to_name(best_opponent[0])
   end
 
-  def biggest_team_blowout(team_id)
-    blowout_amt = 0
-    @games.each do |game|
-      if game.home_team_id == team_id && game.outcome.include?('home win') || game.away_team_id == team_id && game.outcome.include?('away win')
-        goal_diff = (game.home_goals - game.away_goals).abs
-        if goal_diff > blowout_amt
-          blowout_amt = goal_diff
-        end
-      end
-    end
-    blowout_amt
-  end
-
   def most_goals_scored(id)
     team_games = @game_teams.find_all do |game|
        game.team_id == id
@@ -41,6 +28,19 @@ module TeamStats
      end
     low_game = team_games.min_by {|game| game.goals}
     low_game.goals
+  end
+
+  def biggest_team_blowout(team_id)
+    blowout_amt = 0
+    @games.each do |game|
+      if game.home_team_id == team_id && game.outcome.include?('home win') || game.away_team_id == team_id && game.outcome.include?('away win')
+        goal_diff = (game.home_goals - game.away_goals).abs
+        if goal_diff > blowout_amt
+          blowout_amt = goal_diff
+        end
+      end
+    end
+    blowout_amt
   end
 
   def worst_loss(team_id)

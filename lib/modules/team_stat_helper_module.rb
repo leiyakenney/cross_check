@@ -53,7 +53,6 @@ module TeamStatHelpers
         collect_games_by_season(team_id)[season] = (reg_hash[:regular_season] = game)
       end
     end
-    binding.pry
     collect_games_by_season(team_id)
   end
 
@@ -67,6 +66,8 @@ module TeamStatHelpers
       :average_goals_against => 0,
     }
     reg_season
+    require 'pry'; binding.pry
+  
   end
 
   def setup_post_season_hash(team_id)

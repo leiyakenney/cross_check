@@ -84,13 +84,43 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.head_to_head("6")
   end
 
-  def test_reg_vs_post
-    # assert_equal "", @tracker.reg_vs_post("6")
-    assert_equal "", @tracker.season_summary("6")
+
+
+#=========== SEASONAL SUMMARY START ===========
+
+  #seasonal_summary
+  def test_collect_games_by_season
+    skip
+    assert_equal 100000, @tracker.collection_games_by_season("6")
   end
 
+  #seasonal_summary
+  def test_reg_vs_post
+    skip
+    assert_equal 100000, @tracker.reg_vs_post("6")
+  end
+
+  #seasonal_summary
+  def test_type_to_season
+    skip
+    assert_equal 100000, @tracker.type_to_season("P")
+  end
+
+  #seasonal_summary
+  def test_setup_reg_season_hash
+    skip
+    assert_equal 100000, @tracker.test_setup_reg_season_hash("6")
+  end
+
+  #seasonal_summary
+  def test_setup_post_season_hash
+    skip
+    assert_equal 10000, @tracker.setup_post_season_hash("6")
+  end
+
+  #seasonal_summary
   def test_seasonal_summary
-    # skip
+    skip
     expected = {"20122013" => {
         :regular_season => {
           :win_percentage => 0.68,
@@ -109,10 +139,5 @@ class TeamStatsTest < Minitest::Test
       }
     }
     assert_equal expected, @tracker.seasonal_summary("6")
-  end
-
-  def test_sort_by_season
-    binding.pry
-  assert_equal 10000, @tracker.sort_by_season
   end
 end

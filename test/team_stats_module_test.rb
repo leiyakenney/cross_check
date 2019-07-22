@@ -116,18 +116,18 @@ class TeamStatsTest < Minitest::Test
     # skip
     expected = {"20122013" => {
         :regular_season => {
-          :win_percentage => 0.68,
-          :total_goals_scored => 100,
-          :total_goals_against => 80,
-          :average_goals_scored => 3,
-          :average_goals_against => 2.2
+          :win_percentage => 1.0,
+          :total_goals_scored => 2,
+          :total_goals_against => 1,
+          :average_goals_scored => 2,
+          :average_goals_against => 1.0
         },
         :postseason => {
-          :win_percentage => 0.55,
-          :total_goals_scored => 20,
-          :total_goals_against => 9,
-          :average_goals_scored => 4,
-          :average_goals_against => 3.1
+          :win_percentage => 1.0,
+          :total_goals_scored => 9,
+          :total_goals_against => 4,
+          :average_goals_scored => 3,
+          :average_goals_against => 1.33
         }
       }
     }

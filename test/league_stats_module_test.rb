@@ -58,7 +58,6 @@ class LeagueStatsTest < Minitest::Test
     assert_equal "Bruins", @tracker.winningest_team
   end
 
-
   def test_total_games_played
     expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>7, "16"=>7, "9"=>3, "8"=>3}
     assert_equal expected, @tracker.total_games_played

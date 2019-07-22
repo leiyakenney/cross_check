@@ -27,8 +27,12 @@ module SeasonStatHelper
 
   def win_percentage_regular_season(season_id)
     win_percentage = {}
-    games_won_regular_season(season_id).each do |id, gw|
-      win_percentage[id] = (gw / games_played_regular_season(season_id)[id].to_f).round(2)
+    games_played_regular_season(season_id).each do |id, gw|
+      if games_won_regular_season(season_id).has_key?(id)
+        win_percentage[id] = (games_won_regular_season(season_id)[id].to_f / gw).round(2)
+      else
+        win_percentage[id] = 0
+      end
     end
     win_percentage
   end
@@ -60,8 +64,12 @@ module SeasonStatHelper
 
   def win_percentage_post_season(season_id)
     win_percentage = {}
-    games_won_post_season(season_id).each do |id, pg|
-      win_percentage[id] = (pg / games_played_post_season(season_id)[id].to_f).round(2)
+    games_played_post_season(season_id).each do |id, pg|
+      if games_won_post_season(season_id).has_key?(id)
+        win_percentage[id] = (games_won_post_season(season_id)[id].to_f / pg).round(2)
+      else
+        win_percentage[id] = 0
+      end
     end
     win_percentage
   end

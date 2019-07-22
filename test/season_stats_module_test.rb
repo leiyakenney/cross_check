@@ -15,11 +15,10 @@ class SeasonStatTest < Minitest::Test
   end
 
   def test_biggest_bust
-    assert_equal "", @tracker.biggest_bust("20122013")
+    assert_equal "Canadiens", @tracker.biggest_bust("20122013")
   end
 
   def test_biggest_surprise
-    assert_equal "", @tracker.biggest_surprise("20122013")
+    assert_equal "Senators", @tracker.biggest_surprise("20122013")
   end
-
 end

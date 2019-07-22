@@ -84,29 +84,29 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.head_to_head("6")
   end
 
-  def test_reg_vs_post
-    assert_equal 0, @tracker.seasonal_win_percentage("6")
-  end
-
-  def test_seasonal_summary
-    skip
-    expected = {"20122013" => {
-        :regular_season => {
-          :win_percentage => 0.68,
-          :total_goals_scored => 100,
-          :total_goals_against => 80,
-          :average_goals_scored => 3,
-          :average_goals_against => 2.2
-        },
-        :postseason => {
-          :win_percentage => 0.55,
-          :total_goals_scored => 20,
-          :total_goals_against => 9,
-          :average_goals_scored => 4,
-          :average_goals_against => 3.1
-        }
-      }
-    }
-    assert_equal expected, @tracker.seasonal_summary("6")
-  end
+  # def test_reg_vs_post
+  #   assert_equal 0, @tracker.seasonal_win_percentage("6")
+  # end
+  #
+  # def test_seasonal_summary
+  #   skip
+  #   expected = {"20122013" => {
+  #       :regular_season => {
+  #         :win_percentage => 0.68,
+  #         :total_goals_scored => 100,
+  #         :total_goals_against => 80,
+  #         :average_goals_scored => 3,
+  #         :average_goals_against => 2.2
+  #       },
+  #       :postseason => {
+  #         :win_percentage => 0.55,
+  #         :total_goals_scored => 20,
+  #         :total_goals_against => 9,
+  #         :average_goals_scored => 4,
+  #         :average_goals_against => 3.1
+  #       }
+  #     }
+  #   }
+  #   assert_equal expected, @tracker.seasonal_summary("6")
+  # end
 end

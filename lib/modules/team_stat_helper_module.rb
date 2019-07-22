@@ -141,5 +141,6 @@ module TeamStatHelpers
     end
     #sorts to postseason first, needs to sort to regularseason
     summary_hash.transform_values { |v| v.sort.to_h}
+    #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
   end
 end

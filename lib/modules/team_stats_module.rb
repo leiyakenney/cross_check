@@ -69,10 +69,6 @@ module TeamStats
     names_vs_percentage
   end
 
-  # def seasonal_summary(team_id)
-  #   season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
-  # end
-
   def team_wins_by_season(team_id)
     team_wins_by_season = Hash.new(0)
     @games.map do |game|
@@ -99,9 +95,8 @@ module TeamStats
 
   def avg_win_percent_by_season(team_id)
     number_game_by_season = num_games_by_season(team_id)
-
     avg_win_percent_by_season = Hash.new(0)
-      team_wins_by_season(team_id).map do |season, num_season_wins|
+    team_wins_by_season(team_id).map do |season, num_season_wins|
       avg_win_percent_by_season[season] = num_season_wins/number_game_by_season[season].to_f
     end
     avg_win_percent_by_season
@@ -121,8 +116,7 @@ module TeamStats
   end
 
   def average_win_percentage(team_id)
-    #{3=>10.0, 6=>28.0, 5=>2.0, 17=>1.0}
-  average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
-  average_win_by_team.round(2)
+    average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
+    average_win_by_team.round(2)
   end
 end

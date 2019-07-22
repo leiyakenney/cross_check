@@ -95,7 +95,7 @@ class TeamStatsTest < Minitest::Test
     assert_equal 100000, @tracker.collect_games_by_season("6")
   end
 
-  #seasonal_summary
+#seasonal_summary
   #returns a hash with seasons as key, sub keys as post/pre season, and
   #game objects as values of post/pre season in a array
   def test_reg_vs_post

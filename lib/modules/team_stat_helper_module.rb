@@ -29,7 +29,7 @@ module TeamStatHelpers
   def games_played_vs_opponent_percentage(team_id)
     percentage_won = {}
     games_played_against_opponents(team_id).each do |id, gp|
-      percentage_won[id] =  games_lost_against_opponents(team_id)[id] / gp.to_f
+      percentage_won[id] = games_lost_against_opponents(team_id)[id] / gp.to_f
     end
     percentage_won
   end
@@ -46,8 +46,7 @@ module TeamStatHelpers
         num_won += 1
       end
     end
-    total_games = (games.count/2).to_f
-    percent_won = num_won/total_games
+    percent_won = (num_won/games.count).to_f
   end
 
 
@@ -60,7 +59,7 @@ module TeamStatHelpers
         num_goals += game.away_goals
       end
     end
-    total_number_goals = num_goals/2
+    num_goals
   end
 
 
@@ -73,30 +72,29 @@ module TeamStatHelpers
         num_goals_against += game.home_goals
       end
     end
-    total_number_goals_against = num_goals_against/2
+    num_goals_against
   end
 
   def average_goals_scored(games, team_id)
     total_scored = total_goals_scored(games, team_id)
-    total_games = (games.count/2).to_f
 
-    avg_goals = total_scored/total_games
+    avg_goals = (total_scored/games.count).to_f
   end
 
   def average_goals_against(games, team_id)
     total_against = total_goals_against(games, team_id)
-    total_games = (games.count/2).to_f
 
-    avg_against = total_against/total_games
+    avg_against = (total_against/games.count).to_f
   end
 
 
 
 #=========== SEASONAL SUMMARY START ===========
 
-
+  #Seasonal_summary method
   def collect_games_by_season(team_id)
-    @games.each_with_object(Hash.new) do |game,hash|
+
+    @games.each_with_object(Hash.new) do |game, hash|
       if game.home_team_id == team_id || game.away_team_id == team_id
         if hash[game.season].nil?
           hash[game.season] = [game]
@@ -109,8 +107,9 @@ module TeamStatHelpers
 
   #Seasonal_summary method
   def reg_vs_post(team_id)
+
     games_by_season = collect_games_by_season(team_id)
-    games_by_season.transform_values do |games|
+     test = games_by_season.transform_values do |games|
       games.group_by do |game|
         type_to_season(game.type)
       end
@@ -130,7 +129,6 @@ module TeamStatHelpers
     season_summary_of_games = reg_vs_post(team_id)
 
     summary_hash = Hash.new
-
     season_summary_of_games.map do |season, sub_hash|
       summary_hash[season] = sub_hash.transform_values do |games|
         {:win_percentage => win_percentage(games, team_id),

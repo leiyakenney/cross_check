@@ -83,4 +83,53 @@ class TeamStatsTest < Minitest::Test
     expected = {"Rangers"=>0.8, "Penguins"=>1.0}
     assert_equal expected, @tracker.head_to_head("6")
   end
+
+
+#=========== SEASONAL SUMMARY START ===========
+
+  #seasonal_summary
+  #returns a hash with seasons as key and game objects as value in array
+  def test_collect_games_by_season
+    skip
+    assert_equal 100000, @tracker.collect_games_by_season("6")
+  end
+
+  #seasonal_summary
+  #returns a hash with seasons as key, sub keys as post/pre season, and
+  #game objects as values of post/pre season in a array
+  def test_reg_vs_post
+    skip
+    assert_equal 100000, @tracker.reg_vs_post("6")
+  end
+
+  #seasonal_summary
+  #helper method of reg_vs_post
+  #returns postseason or preseason in replace of P or R
+  def test_type_to_season
+    skip
+    assert_equal 100000, @tracker.type_to_season("P")
+  end
+
+  #seasonal_summary
+  def test_seasonal_summary
+    # skip
+    expected = {"20122013" => {
+        :regular_season => {
+          :win_percentage => 1.0,
+          :total_goals_scored => 2,
+          :total_goals_against => 1,
+          :average_goals_scored => 2,
+          :average_goals_against => 1.0
+        },
+        :postseason => {
+          :win_percentage => 1.0,
+          :total_goals_scored => 9,
+          :total_goals_against => 4,
+          :average_goals_scored => 3,
+          :average_goals_against => 1.33
+        }
+      }
+    }
+    assert_equal expected, @tracker.seasonal_summary("8")
+  end
 end

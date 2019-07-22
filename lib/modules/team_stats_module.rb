@@ -119,4 +119,27 @@ module TeamStats
     average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
     average_win_by_team.round(2)
   end
+
+  def seasonal_summary(team_id)
+    season_summary_of_games = add_nil_post_regular_season(team_id)
+    summary_hash = Hash.new
+    season_summary_of_games.map do |season, sub_hash|
+      summary_hash[season] = sub_hash.transform_values do |games|
+        {:win_percentage => win_percentage(games, team_id),
+        :total_goals_scored => total_goals_scored(games, team_id),
+        :total_goals_against => total_goals_against(games, team_id),
+        :average_goals_scored => average_goals_scored(games, team_id),
+        :average_goals_against => average_goals_against(games, team_id)}
+      end
+    end
+    #sorts to postseason first, needs to sort to regularseason
+    #postseason first
+    test = summary_hash.transform_values { |v| v.sort.to_h}
+    #optional?????
+
+    #regularseason first
+    #summary_hash.transform_values { |v| v.sort { |k, v| v <=> k }.to_h}
+    test
+    #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
+  end
 end

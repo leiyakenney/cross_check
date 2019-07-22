@@ -46,7 +46,7 @@ module LeagueStats
   end
 
   def best_worst_defense
-    top_defense = total_goals_against.minmax_by do |team_id, goals|
+    top_defense = tot_goals_against.minmax_by do |team_id, goals|
       (goals.to_f/ total_games_played[team_id])
     end
   end

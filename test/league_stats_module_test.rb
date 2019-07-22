@@ -63,11 +63,6 @@ class LeagueStatsTest < Minitest::Test
     assert_equal expected, @tracker.total_games_played
   end
 
-  def test_total_goals_against
-    expected = {"3"=>16, "6"=>12, "5"=>12, "17"=>16, "16"=>15, "9"=>6, "8"=>11}
-    assert_equal expected, @tracker.total_goals_against
-  end
-
   def test_best_fans
     assert_equal "Rangers", @tracker.best_fans
   end

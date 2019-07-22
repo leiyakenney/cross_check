@@ -131,6 +131,6 @@ class TeamStatsTest < Minitest::Test
         }
       }
     }
-    assert_equal expected, @tracker.seasonal_summary("6")
+    assert_equal expected, @tracker.seasonal_summary("8")
   end
 end

@@ -37,7 +37,9 @@ module TeamStatHelpers
   #========= SEASONAL SUMMARY HELPER START =============
 
   def win_percentage(games, team_id)
-    # binding.pry
+     # binding.pry
+    return 0.0 if games.nil?
+
     num_won = 0
     games.each do |game|
       if team_id == game.home_team_id && game.home_goals > game.away_goals
@@ -46,12 +48,19 @@ module TeamStatHelpers
         num_won += 1
       end
     end
-    percent_won = (num_won/games.count).to_f
-    percent_won.round(2)
+
+      unless games.count == 0.0
+        #if it 0 DON'T DO THIS
+      percent_won = (num_won/games.count).to_f
+      percent_won.round(2)
+    end
   end
 
 
   def total_goals_scored(games, team_id)
+
+    return 0 if games.nil?
+
     num_goals = 0
     games.each do |game|
       if team_id == game.home_team_id
@@ -65,6 +74,9 @@ module TeamStatHelpers
 
 
   def total_goals_against(games, team_id)
+
+    return 0 if games.nil?
+
     num_goals_against = 0
     games.each do |game|
       if team_id == game.home_team_id
@@ -77,6 +89,9 @@ module TeamStatHelpers
   end
 
   def average_goals_scored(games, team_id)
+
+    return 0.0 if games.nil?
+
     total_scored = total_goals_scored(games, team_id).to_f
 
     avg_goals = (total_scored/games.count).to_f
@@ -84,6 +99,9 @@ module TeamStatHelpers
   end
 
   def average_goals_against(games, team_id)
+
+    return 0.0 if games.nil?
+
     total_against = total_goals_against(games, team_id)
 
     avg_against = (total_against.to_f/games.count.to_f)
@@ -105,6 +123,7 @@ module TeamStatHelpers
           hash[game.season] << game
         end
       end
+      # binding.pry
     end
   end
 
@@ -118,20 +137,37 @@ module TeamStatHelpers
         type_to_season(game.type)
       end
     end
+
   end
+
+  def add_nil_post_regular_season(team_id)
+    season_post_reg_hash = reg_vs_post(team_id)
+    postseason = {:postseason => []}
+
+    season_post_reg_hash.map do |season, values|
+      if values.none? {|value| value.include? :postseason }
+        season_post_reg_hash[season].merge!(postseason)
+      end
+    end
+    season_post_reg_hash
+    #binding.pry
+    # if transform_values.values.none? {|}:postseason
+  end
+
 
   #Seasonal_summary method
   def type_to_season(type)
     if type == 'P'
-      return 'postseason'
+      return :postseason
     elsif type == 'R'
-      return 'regular_season'
+      return :regular_season
     end
   end
 
   def seasonal_summary(team_id)
-    season_summary_of_games = reg_vs_post(team_id)
-
+    season_summary_of_games = add_nil_post_regular_season(team_id)
+    #season_summary_of_games = reg_vs_post(team_id)
+#binding.pry
     summary_hash = Hash.new
     season_summary_of_games.map do |season, sub_hash|
       summary_hash[season] = sub_hash.transform_values do |games|
@@ -143,8 +179,13 @@ module TeamStatHelpers
       end
     end
     #sorts to postseason first, needs to sort to regularseason
-    summary_hash.transform_values { |v| v.sort.to_h}
+    #postseason first
+    test = summary_hash.transform_values { |v| v.sort.to_h}
+    #optional?????
+
+    #regularseason first
     #summary_hash.transform_values { |v| v.sort { |k, v| v <=> k }.to_h}
+    test
     #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
   end
 end

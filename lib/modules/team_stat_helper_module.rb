@@ -66,8 +66,6 @@ module TeamStatHelpers
       :average_goals_against => 0,
     }
     reg_season
-    require 'pry'; binding.pry
-  
   end
 
   def setup_post_season_hash(team_id)

@@ -87,7 +87,7 @@ module TeamStatHelpers
     total_against = total_goals_against(games, team_id)
     total_games = (games.count/2).to_f
 
-    avg_against = total_against/total_games 
+    avg_against = total_against/total_games
   end
 
 
@@ -158,29 +158,30 @@ module TeamStatHelpers
   #   season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
   # end
 
-  #Seasonal_summary method
-  # def seasonal_summary(team_id)
-  #   season_summary_of_games = reg_vs_post(team_id)
-  #
-  #   test = season_summary_of_games.each do |season, sub_hash|
-  #     sub_hash.transform_values do |games|
-  #
-  #       {:win_percentage => win_percentage(games),
-  #       :total_goals_scored => total_goals_scored(games),
-  #       :total_goals_against => total_goals_against(games),
-  #       :average_goals_scored => average_goals_scored(games),
-  #       :average_goals_against => average_goals_against(games)}
-  #     end
-  #   end
-  #   test
-  # end
-
   def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
     season_summary_of_games.map do |season, sub_hash|
       #season_summary_of_games.each do |season, sub_hash|
-      sub_hash.transform_values do |games|
+      #sub_hash.map do |sub_hash|
+        sub_hash.transform_values do |games|
+          {:win_percentage => win_percentage(games, team_id),
+          :total_goals_scored => total_goals_scored(games, team_id),
+          :total_goals_against => total_goals_against(games, team_id),
+          :average_goals_scored => average_goals_scored(games, team_id),
+          :average_goals_against => average_goals_against(games, team_id)}
+      end
+    end
+  end
+
+  def seasonal_summary(team_id)
+    season_summary_of_games = reg_vs_post(team_id)
+
+    summary_hash = Hash.new
+
+    season_summary_of_games.map do |season, sub_hash|
+      #season_summary_of_games.each do |season, sub_hash|
+      summary_hash[season] = sub_hash.transform_values do |games|
         {:win_percentage => win_percentage(games, team_id),
         :total_goals_scored => total_goals_scored(games, team_id),
         :total_goals_against => total_goals_against(games, team_id),
@@ -188,5 +189,8 @@ module TeamStatHelpers
         :average_goals_against => average_goals_against(games, team_id)}
       end
     end
+    summary_hash
   end
+
+
 end

@@ -105,11 +105,12 @@ module TeamStatHelpers
     end
   end
 
-  #Seasonal_summary method
+
   def reg_vs_post(team_id)
 
     games_by_season = collect_games_by_season(team_id)
-     test = games_by_season.transform_values do |games|
+
+    games_by_season.transform_values do |games|
       games.group_by do |game|
         type_to_season(game.type)
       end
@@ -138,6 +139,7 @@ module TeamStatHelpers
         :average_goals_against => average_goals_against(games, team_id)}
       end
     end
-    summary_hash
+    #sorts to postseason first, needs to sort to regularseason
+    summary_hash.transform_values { |v| v.sort.to_h}
   end
 end

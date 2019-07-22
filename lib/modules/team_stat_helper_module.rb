@@ -47,6 +47,7 @@ module TeamStatHelpers
       end
     end
     percent_won = (num_won/games.count).to_f
+    percent_won.round(2)
   end
 
 
@@ -72,19 +73,21 @@ module TeamStatHelpers
         num_goals_against += game.home_goals
       end
     end
-    num_goals_against
+    num_goals_against.round(2)
   end
 
   def average_goals_scored(games, team_id)
-    total_scored = total_goals_scored(games, team_id)
+    total_scored = total_goals_scored(games, team_id).to_f
 
     avg_goals = (total_scored/games.count).to_f
+    avg_goals.round(2)
   end
 
   def average_goals_against(games, team_id)
     total_against = total_goals_against(games, team_id)
 
-    avg_against = (total_against/games.count).to_f
+    avg_against = (total_against.to_f/games.count.to_f)
+    avg_against.round(2)
   end
 
 
@@ -141,6 +144,7 @@ module TeamStatHelpers
     end
     #sorts to postseason first, needs to sort to regularseason
     summary_hash.transform_values { |v| v.sort.to_h}
+    #summary_hash.transform_values { |v| v.sort { |k, v| v <=> k }.to_h}
     #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
   end
 end

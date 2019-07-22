@@ -14,14 +14,6 @@ class SeasonStatTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
-  def test_biggest_bust
-    assert_equal "Canadiens", @tracker.biggest_bust("20122013")
-  end
-
-  def test_biggest_surprise
-    assert_equal "Senators", @tracker.biggest_surprise("20122013")
-  end
-
   def test_game_id_in_season
   expected = {"20122013"=>["2012030221", "2012030222", "2012030313", "2012030314", "2012030231", "2012030232", "2012030233", "2012030234", "2012030235", "2012030236", "2012030237", "2012030121", "2012030122", "2012030123"], "20132014"=>["2012030223", "2012030224", "2012030225"], "20142015"=>["2012030311",
  "2012030312"]}

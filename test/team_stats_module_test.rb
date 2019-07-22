@@ -84,9 +84,9 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.head_to_head("6")
   end
 
-  # def test_reg_vs_post
-  #   assert_equal 0, @tracker.seasonal_win_percentage("6")
-  # end
+  def test_reg_vs_post
+    assert_equal 0, @tracker.reg_vs_post("6")
+  end
   #
   # def test_seasonal_summary
   #   skip

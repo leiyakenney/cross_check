@@ -33,36 +33,37 @@ module TeamStatHelpers
     percentage_won
   end
 
-#   def collect_games_by_season(team_id)
-#     season_collection = {}
-#     @games.each do |game|
-#       if game.home_team_id == team_id || game.away_team_id == team_id
-#         season_collection[game.season] = []
-#       end
-#       season_collection[game.season] << game
-#     end
-#     season_collection
-#   end
-# #
-#   def reg_vs_post(team_id)
-#     reg_hash = {}
-#     post_hash = {}
-#     season_to_type = {}
-#     collect_games_by_season(team_id).each do |season, games|
-#       games.each do |game|
-#         if game.type == "P"
-#           post_hash[:postseason] = []
-#           post_hash[:postseason] << game
-#         elsif game.type == "R"
-#           reg_hash[:regular_season] = []
-#           reg_hash[:regular_season] << game
-#         end
-#       end
-#       season_to_type[season] = post_hash.merge(reg_hash)
-#     end
-#     season_to_type
-#   end
+  def collect_games_by_season(team_id)
+    season_collection = {}
+    @games.each do |game|
+      if game.home_team_id == team_id || game.away_team_id == team_id
+        season_collection[game.season] = []
+      end
+      season_collection[game.season] << game
+    end
+    season_collection
+  end
 #
+  def reg_vs_post(team_id)
+    reg_hash = {}
+    post_hash = {}
+    season_to_type = {}
+    collect_games_by_season(team_id).each do |season, games|
+      games.each do |game|
+        if game.type == "P"
+          post_hash[:postseason] = []
+          post_hash[:postseason] << game
+        elsif game.type == "R"
+          reg_hash[:regular_season] = []
+          reg_hash[:regular_season] << game
+        end
+      end
+      season_to_type[season] = post_hash.merge(reg_hash)
+    end
+    binding.pry
+    season_to_type
+  end
+  
 #   def add_game_data(team_id)
 #     collected_data = {}
 #     nested_result = {}

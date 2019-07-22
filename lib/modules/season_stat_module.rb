@@ -1,5 +1,13 @@
 module SeasonStat
 
+  def most_hits(season)
+      convert_id_to_name(minmax_hits(season)[1][0])
+  end
+
+  def fewest_hits(season)
+      convert_id_to_name(minmax_hits(season)[0][0])
+  end
+  
   def surprise_bust_calculator(season_id)
     differential = {}
     win_percentage_post_season(season_id).map do |id, pw|

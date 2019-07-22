@@ -17,7 +17,8 @@ module SeasonStat
 
     total_shots_by_season = Hash.new(0)
     @game_teams.map do |game|
-      if game_id_in_season_hash[season].any? game.game_id
+    
+      if game_id_in_season_hash[season].include? game.game_id
         total_shots_by_season[game.team_id] += game.shots
       end
     end
@@ -31,7 +32,7 @@ module SeasonStat
     total_goals_by_season = Hash.new(0)
     @game_teams.map do |game|
 
-      if game_id_in_season_hash[season].any? game.game_id
+      if game_id_in_season_hash[season].include? game.game_id
         total_goals_by_season[game.team_id] += game.goals
       end
     end

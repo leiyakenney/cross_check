@@ -43,6 +43,7 @@ module TeamStatHelpers
     end
     season_collection
   end
+<<<<<<< HEAD
 #
   def reg_vs_post(team_id)
     reg_hash = {}
@@ -63,7 +64,7 @@ module TeamStatHelpers
     binding.pry
     season_to_type
   end
-  
+
 #   def add_game_data(team_id)
 #     collected_data = {}
 #     nested_result = {}
@@ -81,4 +82,42 @@ module TeamStatHelpers
 #     end
 #     nested_result
 #   end
+
+  # def reg_vs_post(team_id)
+  #   reg_hash = {}
+  #   post_hash = {}
+  #   collect_games_by_season(team_id).each do |season, game|
+  #     if game.type == "P"
+  #       collect_games_by_season(team_id)[season] = (post_hash[:postseason] = game)
+  #     elsif game.type == "R"
+  #       collect_games_by_season(team_id)[season] = (reg_hash[:regular_season] = game)
+  #     end
+  #   end
+  #
+  #   collect_games_by_season(team_id)
+  # end
+
+  # def setup_reg_season_hash(team_id)
+  #   reg_season = {}
+  #   reg_season[:regular_season] = {
+  #     :win_percentage => 0,
+  #     :total_goals_scored => 0,
+  #     :total_goals_against => 0,
+  #     :average_goals_scored => 0,
+  #     :average_goals_against => 0,
+  #   }
+  #   reg_season
+  # end
+
+  # def setup_post_season_hash(team_id)
+  #   post_season = {}
+  #   post_season[:postseason] = {
+  #     :win_percentage => 0,
+  #     :total_goals_scored => 0,
+  #     :total_goals_against => 0,
+  #     :average_goals_scored => 0,
+  #     :average_goals_against => 0,
+  #   }
+  #   post_season
+  # end
 end

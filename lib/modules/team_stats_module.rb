@@ -69,10 +69,6 @@ module TeamStats
     names_vs_percentage
   end
 
-  def seasonal_summary(team_id)
-    season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
-  end
-
   def team_wins_by_season(team_id)
     team_wins_by_season = Hash.new(0)
     @games.map do |game|
@@ -99,9 +95,8 @@ module TeamStats
 
   def avg_win_percent_by_season(team_id)
     number_game_by_season = num_games_by_season(team_id)
-
     avg_win_percent_by_season = Hash.new(0)
-      team_wins_by_season(team_id).map do |season, num_season_wins|
+    team_wins_by_season(team_id).map do |season, num_season_wins|
       avg_win_percent_by_season[season] = num_season_wins/number_game_by_season[season].to_f
     end
     avg_win_percent_by_season
@@ -121,8 +116,30 @@ module TeamStats
   end
 
   def average_win_percentage(team_id)
-    #{3=>10.0, 6=>28.0, 5=>2.0, 17=>1.0}
-  average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
-  average_win_by_team.round(2)
+    average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
+    average_win_by_team.round(2)
+  end
+
+  def seasonal_summary(team_id)
+    season_summary_of_games = add_nil_post_regular_season(team_id)
+    summary_hash = Hash.new
+    season_summary_of_games.map do |season, sub_hash|
+      summary_hash[season] = sub_hash.transform_values do |games|
+        {:win_percentage => win_percentage(games, team_id),
+        :total_goals_scored => total_goals_scored(games, team_id),
+        :total_goals_against => total_goals_against(games, team_id),
+        :average_goals_scored => average_goals_scored(games, team_id),
+        :average_goals_against => average_goals_against(games, team_id)}
+      end
+    end
+    #sorts to postseason first, needs to sort to regularseason
+    #postseason first
+    test = summary_hash.transform_values { |v| v.sort.to_h}
+    #optional?????
+
+    #regularseason first
+    #summary_hash.transform_values { |v| v.sort { |k, v| v <=> k }.to_h}
+    test
+    #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
   end
 end

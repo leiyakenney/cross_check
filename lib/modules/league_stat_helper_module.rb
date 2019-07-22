@@ -78,7 +78,7 @@ module LeagueStatHelpers
     goals_against_away_team
   end
 
-  def total_goals_against
+  def tot_goals_against
     total_goals_against = away_team_goals_against.merge!(home_team_goals_against) do |id, aga, hga|
       aga + hga
     end

@@ -10,12 +10,9 @@ module SeasonStatHelper
   end
 
   def teams_in_season(season)
-    teams_in_season = []
-    @game_teams.find_all do |game_team|
-      if games_in_season(season).include?(game_team.game_id)
-        teams_in_season << game_team.team_id
+    teams_in_season = @game_teams.find_all do |game_team|
+      games_in_season(season).include?(game_team.game_id)
     end
-    teams_in_season
   end
 
   def total_hits(season)

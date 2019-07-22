@@ -14,10 +14,10 @@ class SeasonStatTest < Minitest::Test
     }
     @tracker = StatTracker.from_csv(@file_names)
   end
-
-  def test_teams_in_season
-    assert_equal ["3", "6", "5", "17"], @tracker.teams_in_season("20122013")
-  end
+  # 
+  # def test_teams_in_season
+  #   assert_equal ["3", "6", "5", "17"], @tracker.teams_in_season("20122013")
+  # end
 
   def test_total_hits
     expected = {

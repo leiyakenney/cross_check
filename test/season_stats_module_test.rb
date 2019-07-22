@@ -15,16 +15,26 @@ class SeasonStatTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
+  def test_teams_in_season
+    assert_equal ["3", "6", "5", "17"], @tracker.teams_in_season("20122013")
+  end
+
   def test_total_hits
-    assert_equal 643, @tracker.total_hits
+    expected = {
+      "3" => 77,
+      "6" => 146,
+      "5" => 79,
+      "17" => 43
+    }
+    assert_equal expected, @tracker.total_hits("20122013")
   end
 
 
   def test_most_hits
-    assert_equal "Bruins", @tracker.most_hits(20122013)
+    assert_equal "Bruins", @tracker.most_hits("20122013")
   end
 
-  # def test_fewest_hits
-  #   assert_equal "Red Wings", @tracker.fewest_hits(20122013)
-  # end
+  def test_fewest_hits
+    assert_equal "Red Wings", @tracker.fewest_hits("20122013")
+  end
 end

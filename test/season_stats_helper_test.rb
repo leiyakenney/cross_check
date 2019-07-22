@@ -15,37 +15,37 @@ class SeasonStatHelperTest < Minitest::Test
   end
 
   def test_games_played_regular_season
-    expected = {"6"=>1, "5"=>1, "17"=>1, "16"=>1}
+    expected = {"6"=>2, "3"=>1, "5"=>1, "17"=>2, "16"=>2, "8"=>2, "9"=>2}
     assert_equal expected, @tracker.games_played_regular_season("20122013")
   end
 
   def test_games_won_regular_season
-    expected = {"6"=>1, "17"=>1}
+    expected = {"6"=>2, "17"=>1, "16"=>1, "8"=>1, "9"=>1}
     assert_equal expected, @tracker.games_won_regular_season("20122013")
   end
 
   def test_games_lost_regular_season
-    expected = {"6"=>1, "5"=>1, "17"=>1, "16"=>1}
+    expected = {"6"=>2, "3"=>1, "5"=>1, "17"=>2, "16"=>2, "8"=>2, "9"=>2}
     assert_equal expected, @tracker.games_played_regular_season("20122013")
   end
 
   def test_win_percentage_regular_season
-    expected = {"6"=>1.0, "17"=>1.0}
+    expected = {"6"=>1.0, "3"=>0, "5"=>0, "17"=>0.5, "16"=>0.5, "8"=>0.5, "9"=>0.5}
     assert_equal expected, @tracker.win_percentage_regular_season("20122013")
   end
 
   def test_games_played_post_season
-    expected = {"6"=>3, "3"=>2, "5"=>1, "16"=>6, "17"=>6, "8"=>3, "9"=>3}
+    expected = {"6"=>2, "3"=>1, "5"=>1, "16"=>5, "17"=>5, "8"=>1, "9"=>1}
     assert_equal expected, @tracker.games_played_post_season("20122013")
   end
 
   def test_games_won_post_season
-    expected = {"6"=>3, "16"=>4, "17"=>2, "9"=>2, "8"=>1}
+    expected = {"6"=>2, "16"=>3, "17"=>2, "9"=>1}
     assert_equal expected, @tracker.games_won_post_season("20122013")
   end
 
   def test_win_percentage_post_season
-    expected = {"6"=>1.0, "16"=>0.67, "17"=>0.33, "9"=>0.67, "8"=>0.33}
+    expected = {"6"=>1.0, "3"=>0, "5"=>0, "16"=>0.6, "17"=>0.4, "8"=>0, "9"=>1.0}
     assert_equal expected, @tracker.win_percentage_post_season("20122013")
   end
 end

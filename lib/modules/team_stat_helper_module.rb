@@ -43,8 +43,7 @@ module TeamStatHelpers
     end
     season_collection
   end
-<<<<<<< HEAD
-#
+
   def reg_vs_post(team_id)
     reg_hash = {}
     post_hash = {}

@@ -34,10 +34,10 @@ module TeamStatHelpers
     percentage_won
   end
 
-  #========= SEASONAL SUMMARY START =============
+  #========= SEASONAL SUMMARY HELPER START =============
 
   def win_percentage(games, team_id)
-
+    # binding.pry
     num_won = 0
     games.each do |game|
       if team_id == game.home_team_id && game.home_goals > game.away_goals
@@ -126,61 +126,12 @@ module TeamStatHelpers
     end
   end
 
-  #Seasonal_summary method
-  #Is this actually doing anything?
-  # def setup_reg_season_hash(team_id)
-  #   reg_season = {}
-  #   reg_season[:regular_season] = {
-  #     :win_percentage => 0,
-  #     :total_goals_scored => 0,
-  #     :total_goals_against => 0,
-  #     :average_goals_scored => 0,
-  #     :average_goals_against => 0,
-  #   }
-  #   reg_season
-  # end
-
-  # Seasonal_summary method
-  # Is this actually doing anything?
-  # def setup_post_season_hash(team_id)
-  #   post_season = {}
-  #   post_season[:postseason] = {
-  #     :win_percentage => 0,
-  #     :total_goals_scored => 0,
-  #     :total_goals_against => 0,
-  #     :average_goals_scored => 0,
-  #     :average_goals_against => 0,
-  #   }
-  #   post_season
-  # end
-
-  # def seasonal_summary_2(team_id)
-  #   season_summary = setup_reg_season_hash(team_id).merge(setup_post_season_hash(team_id))
-  # end
-
-  def seasonal_summary(team_id)
-    season_summary_of_games = reg_vs_post(team_id)
-
-    season_summary_of_games.map do |season, sub_hash|
-      #season_summary_of_games.each do |season, sub_hash|
-      #sub_hash.map do |sub_hash|
-        sub_hash.transform_values do |games|
-          {:win_percentage => win_percentage(games, team_id),
-          :total_goals_scored => total_goals_scored(games, team_id),
-          :total_goals_against => total_goals_against(games, team_id),
-          :average_goals_scored => average_goals_scored(games, team_id),
-          :average_goals_against => average_goals_against(games, team_id)}
-      end
-    end
-  end
-
   def seasonal_summary(team_id)
     season_summary_of_games = reg_vs_post(team_id)
 
     summary_hash = Hash.new
 
     season_summary_of_games.map do |season, sub_hash|
-      #season_summary_of_games.each do |season, sub_hash|
       summary_hash[season] = sub_hash.transform_values do |games|
         {:win_percentage => win_percentage(games, team_id),
         :total_goals_scored => total_goals_scored(games, team_id),
@@ -191,6 +142,4 @@ module TeamStatHelpers
     end
     summary_hash
   end
-
-
 end

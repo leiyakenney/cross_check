@@ -112,20 +112,6 @@ class TeamStatsTest < Minitest::Test
   end
 
   #seasonal_summary
-  #returns setup for reg_season hash
-  def test_setup_reg_season_hash
-    skip
-    assert_equal 100000, @tracker.setup_reg_season_hash("6")
-  end
-
-  #seasonal_summary
-  #returns setup for post_season hash
-  def test_setup_post_season_hash
-    skip
-    assert_equal 10000, @tracker.setup_post_season_hash("6")
-  end
-
-  #seasonal_summary
   def test_seasonal_summary
     # skip
     expected = {"20122013" => {

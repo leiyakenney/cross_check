@@ -1,6 +1,5 @@
 require './test/test_helper'
 
-
 class LeagueStatsTest < Minitest::Test
 
   def setup
@@ -59,15 +58,9 @@ class LeagueStatsTest < Minitest::Test
     assert_equal "Bruins", @tracker.winningest_team
   end
 
-
   def test_total_games_played
     expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>7, "16"=>7, "9"=>3, "8"=>3}
     assert_equal expected, @tracker.total_games_played
-  end
-
-  def test_total_goals_against
-    expected = {"3"=>16, "6"=>12, "5"=>12, "17"=>16, "16"=>15, "9"=>6, "8"=>11}
-    assert_equal expected, @tracker.total_goals_against
   end
 
   def test_best_fans

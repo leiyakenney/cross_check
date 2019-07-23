@@ -15,13 +15,8 @@ class SeasonStatTest < Minitest::Test
   end
 
   def test_games_in_season
-    assert_equal "2012030221", @tracker.games_in_season("20122013")[0]
+    assert_equal "2013-05-16", @tracker.games_in_season("20122013")["2012030221"]
   end
-
-  def test_game_teams_in_season
-    assert_equal "2012030221", @tracker.game_teams_in_season("20122013")[0].game_id
-  end
-
 
   def test_total_hits
     expected = {
@@ -40,7 +35,7 @@ class SeasonStatTest < Minitest::Test
 
   def test_fewest_hits
     assert_equal "Red Wings", @tracker.fewest_hits("20122013")
-  end 
+  end
 
   def test_game_id_in_season
   expected = {"20122013"=>["2012030221", "2012030222", "2012030313", "2012030314", "2012030231", "2012030232", "2012030233", "2012030234", "2012030235", "2012030236", "2012030237", "2012030121", "2012030122", "2012030123"], "20132014"=>["2012030223", "2012030224", "2012030225"], "20142015"=>["2012030311",

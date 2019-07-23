@@ -116,7 +116,7 @@ module TeamStats
   end
 
   def average_win_percentage(team_id)
-    average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
+    average_win_by_team = games_won_game_team[team_id]/total_games_played[team_id].to_f
     average_win_by_team.round(2)
   end
 
@@ -132,14 +132,6 @@ module TeamStats
         :average_goals_against => average_goals_against(games, team_id)}
       end
     end
-    #sorts to postseason first, needs to sort to regularseason
-    #postseason first
     test = summary_hash.transform_values { |v| v.sort.to_h}
-    #optional?????
-
-    #regularseason first
-    #summary_hash.transform_values { |v| v.sort { |k, v| v <=> k }.to_h}
-    test
-    #from stackover flow https://stackoverflow.com/users/2035262/aleksei-matiushkin
   end
 end

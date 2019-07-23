@@ -1,26 +1,23 @@
 module SeasonStatHelper
 
   def games_in_season(season)
-    games_in_season_id = @games.find_all do |game|
-      game.season == season
+    games_in_season_id = {}
+    @games.each do |game|
+      if game.season == season
+        games_in_season_id[game.game_id] = game.date_time
+      end
     end
-    games_in_season_id.map do |game_id|
-      game_id.game_id
-    end
-  end
-
-  def game_teams_in_season(season)
-    teams_in_season = @game_teams.find_all do |game_team|
-      games_in_season(season).include?(game_team.game_id)
-    end
+    games_in_season_id
   end
 
   def total_hits(season)
-    total_hits_hash = Hash.new(0)
-    game_teams_in_season(season).each do |game_team|
-      total_hits_hash[game_team.team_id] += game_team.hits
+    total_hits = Hash.new(0)
+    @game_teams.each do |game|
+      if games_in_season(season).keys.include?(game.game_id)
+        total_hits[game.team_id] += game.hits
+      end
     end
-    total_hits_hash
+    total_hits
   end
 
   def minmax_hits(season)

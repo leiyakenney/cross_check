@@ -38,7 +38,7 @@ module LeagueStatHelpers
     avg_offense = Hash.new
     total_goals_games_gt[:tgo].each do |team_id, total_goals|
       avg_offense[team_id] =
-      (total_goals_games_gt[:tgo][team_id]/total_goals_games_gt[:tga][team_id]).round(2)
+      (total_goals_games_gt[:tgo][team_id].to_f/total_goals_games_gt[:tga][team_id]).round(2)
     end
     avg_offense
   end

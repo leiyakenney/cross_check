@@ -74,9 +74,34 @@ module SeasonStat
     convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
   end
 
-  def winningest_coach(season)
-    # @game_teams.group_by {|game| game.team_id}.values.map {|games| games.select {|game| game.won == "TRUE"}}
+  def games_play_won_seas(season)
+    games_data = {:gw => Hash.new(0), :gp => Hash.new(0)}
+    @game_teams.each do |game|
+      if games_in_season(season).keys.include?(game.game_id) && game.won == "TRUE"
+        games_data[:gw][game.head_coach] += 1
+        games_data[:gp][game.head_coach] += 1
+      elsif games_in_season(season).keys.include?(game.game_id)
+        games_data[:gp][game.head_coach] += 1
+        games_data[:gw][game.head_coach] += 0
+
+      end
+    end
+    games_data
   end
+
+  def game_win_percentage_coach(season)
+  games_play_won_seas(season)[:gw]
+      .merge!(games_play_won_seas(season)[:gp]) {|c,gw,gp| gw.to_f/gp.to_f}.minmax_by{|c,gw| gw}
+  end
+
+  def winningest_coach(season)
+    game_win_percentage_coach(season)[1][0]
+  end
+
+  def worst_coach(season)
+    game_win_percentage_coach(season)[0][0]
+  end 
+
   def power_play_goal_percentage(season)
     (ppg_goals(season).values.sum.to_f/total_goals_by_season(season).values.sum).round(2)
   end

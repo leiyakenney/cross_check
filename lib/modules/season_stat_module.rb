@@ -74,14 +74,6 @@ module SeasonStat
     convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
   end
 
-  def ppg_goals(season)
-    ppg_hash = Hash.new(0)
-    game_teams_in_season(season).each do |game_team|
-      ppg_hash[game_team.team_id] += game_team.ppg
-    end
-    ppg_hash
-  end
-
   def power_play_goal_percentage(season)
     (ppg_goals(season).values.sum.to_f/total_goals_by_season(season).values.sum).round(2)
   end

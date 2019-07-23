@@ -100,4 +100,13 @@ module SeasonStatHelper
     end
     win_percentage
   end
+
+
+  def ppg_goals(season)
+    ppg_hash = Hash.new(0)
+    game_teams_in_season(season).each do |game_team|
+      ppg_hash[game_team.team_id] += game_team.ppg
+    end
+    ppg_hash
+  end
 end

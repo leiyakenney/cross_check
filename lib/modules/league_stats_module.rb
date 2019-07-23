@@ -68,8 +68,8 @@ module LeagueStats
 
   def worst_fans
     worst_fans_arr = []
-    @game_teams.each do |team|
-      if away_wins_percentage_by_team > home_wins_percentage_by_team
+    percent_of_away_games_won.each do |id, per|
+      if per > percent_of_home_games_won[id]
         worst_fans_arr << team.team_id
       end
     end

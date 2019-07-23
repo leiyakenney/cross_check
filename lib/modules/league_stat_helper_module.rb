@@ -82,20 +82,6 @@ module LeagueStatHelpers
     home_away_wins
   end
 
-  def home_wins_percentage_by_team
-    win_percentages = total_home_away_wins_by_team[:hw]
-      .merge(total_goals_games_gt[:tga]) {|team, win, games|win/games.to_f}
-    max = win_percentages.max_by{|k,v| v}
-    max[1].round(2)
-  end
-
-  def away_wins_percentage_by_team
-    aw_percentages = total_home_away_wins_by_team[:aw]
-      .merge(total_goals_games_gt[:tga]){|team, win, games| win/games.to_f}
-    max = aw_percentages.max_by{|k,v| v}
-    max[1].round(2)
-  end
-
   def home_away_game_team_wins
     home_away_wins = {:hw => Hash.new(0), :aw => Hash.new(0)}
       @game_teams.find_all do |game|

@@ -70,21 +70,11 @@ class LeagueStatsHelperTest < Minitest::Test
     assert_equal expected_aw, @tracker.total_home_away_wins_by_team[:aw]
   end
 
-  def test_home_wins_percentage_by_team
-    expected = 1.0
-    assert_equal expected, @tracker.home_wins_percentage_by_team
-  end
-
   def test_home_game_team_wins
     expected_hw = {"6"=>5, "3"=>1}
     assert_equal expected_hw, @tracker.home_away_game_team_wins[:hw]
     expected_aw = {"6"=>3}
     assert_equal expected_aw, @tracker.home_away_game_team_wins[:aw]
-  end
-
-  def test_away_wins_percentage_by_team
-    expected = 1.0
-    assert_equal expected, @tracker.away_wins_percentage_by_team
   end
 
   def test_total_home_games_played

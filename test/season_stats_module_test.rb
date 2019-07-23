@@ -15,13 +15,8 @@ class SeasonStatTest < Minitest::Test
   end
 
   def test_games_in_season
-    assert_equal "2012030221", @tracker.games_in_season("20122013")[0]
+    assert_equal "2013-05-16", @tracker.games_in_season("20122013")["2012030221"]
   end
-
-  def test_game_teams_in_season
-    assert_equal "2012030221", @tracker.game_teams_in_season("20122013")[0].game_id
-  end
-
 
   def test_total_hits
     expected = {
@@ -79,4 +74,23 @@ class SeasonStatTest < Minitest::Test
   def test_power_play_goal_percentage
     assert_equal 0.06, @tracker.power_play_goal_percentage("20122013")
   end
+
+  def test_games_play_won_seas
+    expected = {"John Tortorella"=>0, "Claude Julien"=>4, "Dan Bylsma"=>0, "Mike Babcock"=>0}
+
+    assert_equal expected, @tracker.games_play_won_seas("20122013")[:gw]
+  end
+
+  def test_winningest_coach
+    assert_equal "Claude Julien", @tracker.winningest_coach("20122013")
+  end
+
+  def test_game_win_percentage_coach
+    assert_equal [["John Tortorella", 0.0], ["Claude Julien", 1.0]], @tracker.game_win_percentage_coach("20122013")
+  end
+
+  def test_worst_coach
+    assert_equal "John Tortorella", @tracker.worst_coach("20122013")
+  end
+
 end

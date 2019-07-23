@@ -116,7 +116,7 @@ module TeamStats
   end
 
   def average_win_percentage(team_id)
-    average_win_by_team = games_won_game_team[team_id]/total_games_by_game_team[team_id].to_f
+    average_win_by_team = games_won_game_team[team_id]/total_games_played[team_id].to_f
     average_win_by_team.round(2)
   end
 

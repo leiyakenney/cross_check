@@ -105,12 +105,6 @@ module LeagueStatHelpers
     home_wins
   end
 
-  def home_wins_percentage_by_team
-    win_percentages = total_home_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
-    max = win_percentages.max_by{|k,v| v}
-    max[1].round(2)
-  end
-
   def total_away_wins_by_team
     away_wins = Hash.new(0)
     @game_teams.each do |team|
@@ -119,12 +113,6 @@ module LeagueStatHelpers
       end
     end
     away_wins
-  end
-
-  def away_wins_percentage_by_team
-    aw_percentages = total_away_wins_by_team.merge(total_games_by_game_team){|team, win, games| win/games.to_f}
-    max = aw_percentages.max_by{|k,v| v}
-    max[1].round(2)
   end
 
   def home_game_team_wins

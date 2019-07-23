@@ -67,13 +67,11 @@ module LeagueStats
   end
 
   def worst_fans
-    worst_fans_arr = []
-    @game_teams.each do |team|
-      if away_wins_percentage_by_team > home_wins_percentage_by_team
-        worst_fans_arr << team.team_id
+    home_away_difference = difference_home_vs_away_won
+      lowest_difference = home_away_difference.find_all do |team_id, diff_win|
+      diff_win < 0
       end
-    end
-    worst_fans_arr.uniq.map {|worst| convert_id_to_name(worst)}
+    lowest_difference
   end
 
   def best_fans

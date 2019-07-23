@@ -40,5 +40,6 @@ class TeamStatHelpersTest < Minitest::Test
 
   def test_type_to_season
     assert_equal :postseason, @tracker.type_to_season("P")
+    assert_equal :regular_season, @tracker.type_to_season("R")
   end
 end

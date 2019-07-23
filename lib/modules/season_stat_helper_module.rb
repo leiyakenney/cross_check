@@ -11,9 +11,10 @@ module SeasonStatHelper
   end
 
   def total_hits(season)
+    season_games = games_in_season(season)
     total_hits = Hash.new(0)
     @game_teams.each do |game|
-      if games_in_season(season).keys.include?(game.game_id)
+      if season_games.keys.include?(game.game_id)
         total_hits[game.team_id] += game.hits
       end
     end
@@ -21,7 +22,8 @@ module SeasonStatHelper
   end
 
   def minmax_hits(season)
-      total_hits(season).minmax_by {|team_id, hits| hits}
+      hit_total = total_hits(season)
+      hit_total.minmax_by {|team_id, hits| hits}
   end
 
   def games_played_regular_season(season_id)
@@ -99,10 +101,11 @@ module SeasonStatHelper
   end
 
   def game_teams_in_season(season)
-     teams_in_season = @game_teams.find_all do |game_team|
-       games_in_season(season).include?(game_team.game_id)
-     end
-   end
+    season_games = games_in_season(season)
+    teams_in_season = @game_teams.find_all do |game_team|
+      season_games.include?(game_team.game_id)
+    end
+  end
 
   def ppg_goals(season)
     ppg_hash = Hash.new(0)

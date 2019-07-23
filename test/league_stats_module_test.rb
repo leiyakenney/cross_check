@@ -1,4 +1,5 @@
 require './test/test_helper'
+require 'mocha/minitest'
 
 class LeagueStatsTest < Minitest::Test
 

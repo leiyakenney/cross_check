@@ -106,8 +106,8 @@ module SeasonStatHelper
 
   def ppg_goals(season)
     ppg_hash = Hash.new(0)
-    game_teams_in_season(season).each do |game_team|
-      ppg_hash[game_team.team_id] += game_team.ppg
+    game_teams_in_season(season).each do |game|
+      ppg_hash[game.team_id] += game.ppg
     end
     ppg_hash
   end

@@ -70,6 +70,30 @@ module LeagueStatHelpers
     game_team_wins
   end
 
+  def total_home_wins_by_team
+    home_wins = Hash.new(0)
+    @game_teams.each do |team|
+      if team.won && team.hoa == 'home'
+        home_wins[team.team_id] += 1
+      end
+    end
+    home_wins
+  end
+
+  def total_away_wins_by_team
+    away_wins = Hash.new(0)
+    @game_teams.each do |team|
+      if team.won && team.hoa == 'away'
+        away_wins[team.team_id] += 1
+      end
+    end
+    away_wins
+  end
+
+  def home_game_team_wins
+    home_game_team_win = Hash.new(0)
+  end 
+
   def home_away_game_team_wins
     home_away_wins = {:hw => Hash.new(0), :aw => Hash.new(0)}
       @game_teams.find_all do |game|

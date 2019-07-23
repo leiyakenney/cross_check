@@ -13,4 +13,9 @@ class SeasonStatHelperTest < Minitest::Test
     }
     @tracker = StatTracker.from_csv(@file_names)
   end
+
+  def test_ppg_goals
+    expected = {"3"=>0, "6"=>1, "5"=>0, "17"=>0}
+    assert_equal expected, @tracker.ppg_goals("20122013")
+  end
 end

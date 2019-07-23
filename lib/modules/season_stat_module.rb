@@ -90,7 +90,9 @@ module SeasonStat
   end
 
   def game_win_percentage_coach(season)
+
   games_play_won_seas(season)[:gw]
+
       .merge!(games_play_won_seas(season)[:gp]) {|c,gw,gp| gw.to_f/gp.to_f}.minmax_by{|c,gw| gw}
   end
 
@@ -100,7 +102,7 @@ module SeasonStat
 
   def worst_coach(season)
     game_win_percentage_coach(season)[0][0]
-  end 
+  end
 
   def power_play_goal_percentage(season)
     (ppg_goals(season).values.sum.to_f/total_goals_by_season(season).values.sum).round(2)

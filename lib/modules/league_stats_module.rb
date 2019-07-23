@@ -1,8 +1,8 @@
 module LeagueStats
 
   def high_low_scoring_home_team
-    high_team = home_team_goals.minmax_by do |team, goals|
-      (goals.to_f / home_games_played[team])
+    high_team = home_away_team_goals[:hg].minmax_by do |team, goals|
+      (goals.to_f / home_away_games_played[:hg][team])
     end
   end
 
@@ -15,8 +15,8 @@ module LeagueStats
   end
 
   def high_low_scoring_visitor
-    away_high = away_team_goals.minmax_by do |id, goals|
-      (goals.to_f / away_games_played[id])
+    away_high = home_away_team_goals[:ag].minmax_by do |id, goals|
+      (goals.to_f / home_away_games_played[:ag][id])
     end
   end
 
@@ -61,7 +61,7 @@ module LeagueStats
 
   def winningest_team
     awesomest_team = games_won_game_team.max_by do |team_id, games_won|
-      games_won.to_f / total_games_by_game_team[team_id]
+      games_won.to_f / total_games_played[team_id]
     end
     convert_id_to_name(awesomest_team[0])
   end

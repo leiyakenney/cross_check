@@ -66,10 +66,11 @@ module LeagueStats
     convert_id_to_name(awesomest_team[0])
   end
 
+
   def worst_fans
     home_away_difference = difference_home_vs_away_won
       lowest_difference = home_away_difference.find_all do |team_id, diff_win|
-        diff_win < 0
+      diff_win < 0
       end
     lowest_difference
   end

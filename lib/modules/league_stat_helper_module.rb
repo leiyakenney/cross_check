@@ -92,7 +92,7 @@ module LeagueStatHelpers
 
   def home_game_team_wins
     home_game_team_win = Hash.new(0)
-  end 
+  end
 
   def home_away_game_team_wins
     home_away_wins = {:hw => Hash.new(0), :aw => Hash.new(0)}
@@ -137,8 +137,9 @@ module LeagueStatHelpers
   end
 
   def difference_home_vs_away_won
+    home_game_win_percent = percent_of_home_games_won
     difference_home_vs_away_won = Hash.new(0)
-      percent_of_home_games_won.map do |team_id, home_win|
+    percent_of_home_games_won.map do |team_id, home_win|
       difference_home_vs_away_won[team_id] = home_win - percent_of_away_games_won[team_id]
     end
     difference_home_vs_away_won

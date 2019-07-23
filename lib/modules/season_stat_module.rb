@@ -55,15 +55,18 @@ module SeasonStat
   end
 
   def shot_ratio_by_season(season)
+    season_total_shots = total_shots_by_season(season)
+    season_total_goals = total_goals_by_season(season)
     shot_ratio_by_season = Hash.new
-    total_shots_by_season(season).map do |team_id, total_shots|
-      shot_ratio_by_season[team_id] = total_shots/total_goals_by_season(season)[team_id].to_f
+    season_total_shots.map do |team_id, total_shots|
+      shot_ratio_by_season[team_id] = total_shots/season_total_goals[team_id].to_f
     end
     shot_ratio_by_season
   end
 
   def minmax_shot_ratio_by_season(season)
-    shot_ratio_by_season(season).minmax_by {|team_id, shot_ratio| shot_ratio}
+    ratio_shots_by_season = shot_ratio_by_season(season)
+    ratio_shots_by_season.minmax_by {|team_id, shot_ratio| shot_ratio}
   end
 
   def most_accurate_team(season)
@@ -75,12 +78,13 @@ module SeasonStat
   end
 
   def games_play_won_seas(season)
+    season_games = games_in_season(season)
     games_data = {:gw => Hash.new(0), :gp => Hash.new(0)}
     @game_teams.each do |game|
-      if games_in_season(season).keys.include?(game.game_id) && game.won == "TRUE"
+      if season_games.keys.include?(game.game_id) && game.won == "TRUE"
         games_data[:gw][game.head_coach] += 1
         games_data[:gp][game.head_coach] += 1
-      elsif games_in_season(season).keys.include?(game.game_id)
+      elsif season_games.keys.include?(game.game_id)
         games_data[:gp][game.head_coach] += 1
         games_data[:gw][game.head_coach] += 0
 
@@ -104,7 +108,8 @@ module SeasonStat
   end
 
   def power_play_goal_percentage(season)
-    (ppg_goals(season).values.sum.to_f/total_goals_by_season(season).values.sum).round(2)
+    season_total_goals = total_goals_by_season(season)
+    (ppg_goals(season).values.sum.to_f/season_total_goals.values.sum).round(2)
   end
 
 end

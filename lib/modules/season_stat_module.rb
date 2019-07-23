@@ -75,7 +75,6 @@ module SeasonStat
   end
 
   def winningest_coach(season)
-    # max_by @game_teams.group_by {|game| game.team_id}.values.map {|games| games.select {|game| game.won == "TRUE"}}
-binding.pry
+    # @game_teams.group_by {|game| game.team_id}.values.map {|games| games.select {|game| game.won == "TRUE"}}
   end
 end

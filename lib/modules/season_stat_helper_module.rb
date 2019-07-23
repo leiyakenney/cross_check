@@ -98,6 +98,11 @@ module SeasonStatHelper
     win_percentage
   end
 
+  def game_teams_in_season(season)
+     teams_in_season = @game_teams.find_all do |game_team|
+       games_in_season(season).include?(game_team.game_id)
+     end
+   end
 
   def ppg_goals(season)
     ppg_hash = Hash.new(0)

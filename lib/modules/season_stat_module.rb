@@ -9,9 +9,11 @@ module SeasonStat
   end
 
   def surprise_bust_calculator(season_id)
+    post_season_win_percentage = win_percentage_post_season(season_id)
+    regular_season_win_percentage = win_percentage_regular_season(season_id)
     differential = {}
-    win_percentage_post_season(season_id).map do |id, pw|
-      differential[id] = (win_percentage_regular_season(season_id)[id] - pw).round(2)
+    post_season_win_percentage.map do |id, pw|
+      differential[id] = (regular_season_win_percentage[id] - pw).round(2)
     end
     differential.minmax_by {|id,dif| dif}
   end

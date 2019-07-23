@@ -34,7 +34,7 @@ module LeagueStats
 
   def best_worst_offense
     avg_offense = average_offense
-    best_offense_team = avg_offense.minmax_by {|team_id, avg_goals| avg_goals}
+    avg_offense.minmax_by {|team_id, avg_goals| avg_goals}
   end
 
   def best_offense
@@ -46,8 +46,10 @@ module LeagueStats
   end
 
   def best_worst_defense
-    top_defense = tot_goals_against.minmax_by do |team_id, goals|
-      (goals.to_f/ total_games_played[team_id])
+    total_ga = tot_goals_against
+    total_games = total_games_played
+    top_defense = total_ga.minmax_by do |team_id, goals|
+      (goals.to_f/ total_games[team_id])
     end
   end
 
@@ -60,10 +62,12 @@ module LeagueStats
   end
 
   def winningest_team
-    awesomest_team = games_won_game_team.max_by do |team_id, games_won|
-      games_won.to_f / total_games_played[team_id]
+    awesomest_team = games_won_game_team
+    tot_games_played = total_games_played
+    da_best = awesomest_team.max_by do |team_id, games_won|
+      games_won.to_f / tot_games_played[team_id]
     end
-    convert_id_to_name(awesomest_team[0])
+    convert_id_to_name(da_best[0])
   end
 
 

@@ -7,7 +7,7 @@ module SeasonStat
   def fewest_hits(season)
       convert_id_to_name(minmax_hits(season)[0][0])
   end
-  
+
   def surprise_bust_calculator(season_id)
     differential = {}
     win_percentage_post_season(season_id).map do |id, pw|
@@ -72,5 +72,10 @@ module SeasonStat
 
   def least_accurate_team(season)
     convert_id_to_name(minmax_shot_ratio_by_season(season)[1][0])
+  end
+
+  def winningest_coach(season)
+    # max_by @game_teams.group_by {|game| game.team_id}.values.map {|games| games.select {|game| game.won == "TRUE"}}
+binding.pry
   end
 end

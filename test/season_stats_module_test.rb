@@ -15,14 +15,8 @@ class SeasonStatTest < Minitest::Test
   end
 
   def test_games_in_season
-    assert_equal "2012030221", @tracker.games_in_season("20122013")[0]
+    assert_equal "2013-05-16", @tracker.games_in_season("20122013")["2012030221"]
   end
-
-  def test_game_teams_in_season
-    skip
-    assert_equal "2012030221", @tracker.game_teams_in_season("20122013")[0].game_id
-  end
-
 
   def test_total_hits
     expected = {

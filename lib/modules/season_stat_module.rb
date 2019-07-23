@@ -77,4 +77,8 @@ module SeasonStat
   def winningest_coach(season)
     # @game_teams.group_by {|game| game.team_id}.values.map {|games| games.select {|game| game.won == "TRUE"}}
   end
+  def power_play_goal_percentage(season)
+    (ppg_goals(season).values.sum.to_f/total_goals_by_season(season).values.sum).round(2)
+  end
+
 end

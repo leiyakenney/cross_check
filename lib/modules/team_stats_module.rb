@@ -9,39 +9,38 @@ module TeamStats
   info_hash
   end
 
-
-    def team_wins_by_season(team_id)
-      team_wins_by_season = Hash.new(0)
-      @games.map do |game|
-        if team_id == game.away_team_id && (game.away_goals > game.home_goals)
-          team_wins_by_season[game.season] += 1
-        elsif team_id == game.home_team_id && (game.home_goals > game.away_goals)
-          team_wins_by_season[game.season] += 1
-        else
-          team_wins_by_season[game.season] += 0
-        end
+  def team_wins_by_season(team_id)
+    team_wins_by_season = Hash.new(0)
+    @games.map do |game|
+      if team_id == game.away_team_id && (game.away_goals > game.home_goals)
+        team_wins_by_season[game.season] += 1
+      elsif team_id == game.home_team_id && (game.home_goals > game.away_goals)
+        team_wins_by_season[game.season] += 1
+      else
+        team_wins_by_season[game.season] += 0
       end
-      team_wins_by_season
     end
+    team_wins_by_season
+  end
 
-    def num_games_by_season(team_id)
-      num_games_by_season = Hash.new(0)
-      @games.map do |game|
-        if team_id == game.home_team_id || team_id == game.away_team_id
-          num_games_by_season[game.season] += 1
-        end
+  def num_games_by_season(team_id)
+    num_games_by_season = Hash.new(0)
+    @games.map do |game|
+      if team_id == game.home_team_id || team_id == game.away_team_id
+        num_games_by_season[game.season] += 1
       end
-      num_games_by_season
     end
+    num_games_by_season
+  end
 
-    def avg_win_percent_by_season(team_id)
-      number_game_by_season = num_games_by_season(team_id)
-      avg_win_percent_by_season = Hash.new(0)
-      team_wins_by_season(team_id).map do |season, num_season_wins|
-        avg_win_percent_by_season[season] = num_season_wins/number_game_by_season[season].to_f
-      end
-      avg_win_percent_by_season
+  def avg_win_percent_by_season(team_id)
+    number_game_by_season = num_games_by_season(team_id)
+    avg_win_percent_by_season = Hash.new(0)
+    team_wins_by_season(team_id).map do |season, num_season_wins|
+      avg_win_percent_by_season[season] = (num_season_wins/number_game_by_season[season].to_f).round(2)
     end
+    avg_win_percent_by_season
+  end
 
   def best_worst_season(team_id)
     avg_win_percent_by_season = avg_win_percent_by_season(team_id).minmax_by {|season, avg_win| avg_win}
@@ -248,7 +247,7 @@ module TeamStats
       return :regular_season
     end
   end
-  
+
   def seasonal_summary(team_id)
     season_summary_of_games = add_nil_post_regular_season(team_id)
     summary_hash = Hash.new

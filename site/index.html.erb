@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+</style>
+</head>
+
+<h2> NHL Statistics </h2>
+<hr>
+
+<h3> Average Game Statistics </h3>
+<hr>
+<p><b> Highest Total Score</b> = <%=@stat_tracker.highest_total_score%> </p>
+<p><b> Lowest Total Score</b> = <%=@stat_tracker.lowest_total_score%> </p>
+<p><b> Biggest Blowout</b> = <%=@stat_tracker.biggest_blowout%> </p>
+<p><b> Percentage Home Wins</b> = <%=@stat_tracker.percentage_home_wins%> </p>
+<p><b> Percentage Visitor Wins</b> = <%=@stat_tracker.percentage_visitor_wins%> </p>
+<p><b> Count of Games Per Season</b> = <%=@stat_tracker.count_of_games_by_season%> </p>
+<p><b> Average Goals Per Game</b> = <%=@stat_tracker.average_goals_per_game%> </p>
+<p><b> Average Goals By Season</b> = <%=@stat_tracker.average_goals_by_season%> </p>
+<hr>
+
+<h3> Average Leauge Statistics </h3>
+<hr>
+<p><b> Highest Scoring Home Team</b> = <%=@stat_tracker.highest_scoring_home_team%> </p>
+<p><b> Lowest Scoring Home Team</b> = <%=@stat_tracker.lowest_scoring_home_team%> </p>
+<p><b> Highest Scoring Visitor</b> = <%=@stat_tracker.highest_scoring_visitor%> </p>
+<p><b> Lowest Scoring Visitor</b> = <%=@stat_tracker.lowest_scoring_visitor%> </p>
+<p><b> Count of Teams</b> = <%=@stat_tracker.count_of_teams%> </p>
+<p><b> Best Offense</b> = <%=@stat_tracker.best_offense%> </p>
+<p><b> Worst Offense</b> = <%=@stat_tracker.worst_offense%> </p>
+<p><b> Best Defense</b> = <%=@stat_tracker.best_defense%> </p>
+<p><b> Worst Defense</b> = <%=@stat_tracker.worst_defense%> </p>
+<p><b> Winningest Team</b> = <%=@stat_tracker.winningest_team%> </p>
+<p><b> Best Fans</b> = <%=@stat_tracker.best_fans%> </p>
+<hr>
+
+<h3> 
+</html>

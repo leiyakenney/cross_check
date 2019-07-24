@@ -18,7 +18,6 @@ class StatTracker
   include GameStats
   include GlobalHelpers
   include LeagueStats
-  include LeagueStatHelpers
   include TeamStats
   include TeamStatHelpers
   include SeasonStat

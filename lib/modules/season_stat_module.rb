@@ -101,7 +101,6 @@ module SeasonStat
       .merge!(games_play_plus_won[:gp]) {|c,gw,gp| gw/gp.to_f}.minmax_by{|c,gw| gw}
   end
 
-
   def winningest_coach(season)
     game_win_percentage_coach(season)[1][0]
   end
@@ -114,5 +113,4 @@ module SeasonStat
     season_total_goals = total_goals_by_season(season)
     (ppg_goals(season).values.sum.to_f/season_total_goals.values.sum).round(2)
   end
-
 end

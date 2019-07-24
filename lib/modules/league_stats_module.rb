@@ -211,17 +211,17 @@ module LeagueStats
     difference_home_vs_away_won
   end
 
-  def worst_fans
-    home_away_difference = difference_home_vs_away_won
-      lowest_difference = home_away_difference.find_all do |team_id, diff_win|
-      diff_win < 0
-      end
-    lowest_difference
-  end
-
   def best_fans
     diff_home_vs_away_won = difference_home_vs_away_won
     team_diff_greatest_home_v_away = diff_home_vs_away_won.max_by {|team_id, diff_win| diff_win }
     convert_id_to_name(team_diff_greatest_home_v_away[0])
+  end
+
+  def worst_fans
+    home_away_difference = difference_home_vs_away_won
+    lowest_difference = home_away_difference.find_all do |team_id, diff_win|
+      diff_win < 0
+    end
+    lowest_difference
   end
 end

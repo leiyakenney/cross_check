@@ -5,22 +5,14 @@ require_relative './teams'
 require_relative './game_teams'
 require_relative './modules/game_stats_module'
 require_relative './modules/league_stats_module'
-require_relative './modules/league_stat_helper_module'
 require_relative './modules/team_stats_module'
-require_relative './modules/team_stat_helper_module'
-require_relative './modules/season_stat_helper_module'
-require_relative './modules/season_stat_module'
-require_relative './modules/global_helper_module'
 require_relative './modules/season_stat_module'
 require_relative './modules/season_stat_helper_module'
 
 class StatTracker
   include GameStats
-  include GlobalHelpers
   include LeagueStats
-  include LeagueStatHelpers
   include TeamStats
-  include TeamStatHelpers
   include SeasonStat
   include SeasonStatHelper
 
@@ -62,6 +54,4 @@ class StatTracker
     end
     game_teams_arr
   end
-
-
 end

@@ -121,6 +121,17 @@ class TeamStatsTest < Minitest::Test
         }
       }
     assert_equal expected, @tracker.seasonal_summary("8")
+
+    mock_data = {"20122013" =>
+                  {:regular_season => []}}
+
+    expected = {"20122013" =>
+                    {:regular_season => [],
+                    :postseason => []}}
+
+    tracker_postseason_nil = StatTracker.any_instance.stubs(:reg_vs_post).returns(mock_data)
+
+    assert_equal expected, @tracker.add_nil_post_regular_season("5")
   end
 
 

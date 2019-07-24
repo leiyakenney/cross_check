@@ -19,22 +19,6 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.team_info("1")
   end
 
-  def test_favorite_opponent
-    assert_equal 'Penguins', @tracker.favorite_opponent("6")
-  end
-
-  def test_most_goals_scored
-    assert_equal 6, @tracker.most_goals_scored(6)
-  end
-
-  def test_fewest_goals_scored
-    assert_equal 0, @tracker.fewest_goals_scored(5)
-  end
-
-  def test_biggest_team_blowout
-    assert_equal 1, @tracker.biggest_team_blowout("3")
-  end
-
   def test_best_season
     assert_equal "20122013", @tracker.best_season("6")
   end
@@ -55,12 +39,20 @@ class TeamStatsTest < Minitest::Test
     assert_equal 0, @tracker.fewest_goals_scored("5")
   end
 
-  def test_worst_loss
-    assert_equal 3, @tracker.worst_loss("3")
+  def test_favorite_opponent
+    assert_equal 'Penguins', @tracker.favorite_opponent("6")
   end
 
   def test_rival
     assert_equal 'Rangers', @tracker.rival("6")
+  end
+
+  def test_biggest_team_blowout
+    assert_equal 1, @tracker.biggest_team_blowout("3")
+  end
+
+  def test_worst_loss
+    assert_equal 3, @tracker.worst_loss("3")
   end
 
   def test_head_to_head
@@ -71,14 +63,16 @@ class TeamStatsTest < Minitest::Test
   def test_seasonal_summary
     expected = {
       "20122013" =>
-        {:postseason=>
-          {:win_percentage=>0.33,
+      {:postseason=>
+        {:win_percentage=>0.33,
           :total_goals_scored=>6,
           :total_goals_against=>11,
           :average_goals_scored=>2.0,
           :average_goals_against=>3.67}
-          }
         }
+      }
     assert_equal expected, @tracker.seasonal_summary("8")
   end
+
+
 end

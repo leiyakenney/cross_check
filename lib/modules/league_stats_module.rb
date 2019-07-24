@@ -1,17 +1,39 @@
 module LeagueStats
 
+  def home_away_team_goals
+    goals_home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
+    @games.each do |game|
+      goals_home_away[:hg][game.home_team_id] += game.home_goals
+      goals_home_away[:ag][game.away_team_id] += game.away_goals
+    end
+    goals_home_away
+  end
+
+  def home_away_games_played
+    home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
+    @games.each do |game|
+      home_away[:hg][game.home_team_id] += 1
+      home_away[:ag][game.away_team_id]+= 1
+    end
+    home_away
+  end
+
   def high_low_scoring_home_team
-    high_team = home_away_team_goals[:hg].minmax_by do |team, goals|
-      (goals.to_f / home_away_games_played[:hg][team])
+    homeaway_games_played = home_away_games_played
+    homeaway_team_goals = home_away_team_goals
+    high_team = homeaway_team_goals[:hg].minmax_by do |team, goals|
+      (goals.to_f / homeaway_games_played[:hg][team])
     end
   end
 
   def highest_scoring_home_team
-    convert_id_to_name(high_low_scoring_home_team[1][0])
+    highlow_scoring_home_team = high_low_scoring_home_team
+    convert_id_to_name(highlow_scoring_home_team[1][0])
   end
 
   def lowest_scoring_home_team
-    convert_id_to_name(high_low_scoring_home_team[0][0])
+    highlow_scoring_home_team = high_low_scoring_home_team
+    convert_id_to_name(highlow_scoring_home_team[0][0])
   end
 
   def high_low_scoring_visitor

@@ -1,13 +1,13 @@
 module LeagueStatHelpers
 
-  def home_away_games_played
-    home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
-    @games.each do |game|
-      home_away[:hg][game.home_team_id] += 1
-      home_away[:ag][game.away_team_id]+= 1
-    end
-    home_away
-  end
+  # def home_away_games_played
+  #   home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
+  #   @games.each do |game|
+  #     home_away[:hg][game.home_team_id] += 1
+  #     home_away[:ag][game.away_team_id]+= 1
+  #   end
+  #   home_away
+  # end
 
   def total_games_played
     tg = {}
@@ -16,14 +16,14 @@ module LeagueStatHelpers
      tg
   end
 
-  def home_away_team_goals
-    goals_home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
-    @games.each do |game|
-      goals_home_away[:hg][game.home_team_id] += game.home_goals
-      goals_home_away[:ag][game.away_team_id] += game.away_goals
-    end
-    goals_home_away
-  end
+  # def home_away_team_goals
+  #   goals_home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
+  #   @games.each do |game|
+  #     goals_home_away[:hg][game.home_team_id] += game.home_goals
+  #     goals_home_away[:ag][game.away_team_id] += game.away_goals
+  #   end
+  #   goals_home_away
+  # end
 
   def total_goals_games_gt
     total_goal_game = {:tgo => Hash.new(0), :tga => Hash.new(0)}

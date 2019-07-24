@@ -4,4 +4,5 @@ module GlobalHelpers
     team = @teams.find {|team| team.team_id == id}
     team.team_name
   end
+
 end

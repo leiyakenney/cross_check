@@ -91,26 +91,6 @@ class TeamStatsTest < Minitest::Test
     assert_equal expected, @tracker.head_to_head("6")
   end
 
-  def win_percentage
-
-  end
-
-  def test_total_goals_scored
-
-  end
-
-  def test_total_goals_against
-
-  end
-
-  def test_average_goals_scored
-
-  end
-
-  def test_average_goals_against
-
-  end
-
   def test_collect_games_by_season
     assert_equal "2012030122", @tracker.collect_games_by_season("8")["20122013"][1].game_id
   end

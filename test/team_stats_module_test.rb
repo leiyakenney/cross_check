@@ -92,8 +92,4 @@ class TeamStatsTest < Minitest::Test
 
     assert_equal expected, @tracker.add_nil_post_regular_season("5")
   end
-
-  def test_win_percentage
-
-  end
 end

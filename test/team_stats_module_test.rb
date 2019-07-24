@@ -108,7 +108,6 @@ class TeamStatsTest < Minitest::Test
     assert_equal :regular_season, @tracker.type_to_season("R")
   end
 
-
   def test_seasonal_summary
     expected = {
       "20122013" =>
@@ -122,6 +121,4 @@ class TeamStatsTest < Minitest::Test
       }
     assert_equal expected, @tracker.seasonal_summary("8")
   end
-
-
 end

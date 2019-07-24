@@ -10,7 +10,7 @@ require_relative './modules/season_stat_module'
 require_relative './modules/season_stat_helper_module'
 
 class StatTracker
-  include GameStats]
+  include GameStats
   include LeagueStats
   include TeamStats
   include SeasonStat

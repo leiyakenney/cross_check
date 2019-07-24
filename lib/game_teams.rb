@@ -15,8 +15,8 @@ class GameTeams
     @pim = data["pim"].to_i
     @ppo = data["powerPlayOpportunities"].to_i
     @ppg = data["powerPlayGoals"].to_i
-    @fow= data["faceOffWinPercentage"].to_f
-    @giveaways = data["giveaways"].to_i
-    @takeaways = data["takeaways"].to_i
+    #@fow= data["faceOffWinPercentage"].to_f
+    #@giveaways = data["giveaways"].to_i
+    #@takeaways = data["takeaways"].to_i
   end
 end

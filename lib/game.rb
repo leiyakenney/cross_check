@@ -14,11 +14,11 @@ class Game
     @away_goals = data["away_goals"].to_i
     @home_goals = data["home_goals"].to_i
     @outcome = data["outcome"]
-    @home_rink_side_start = data["home_rink_side_start"]
-    @venue = data["venue"]
-    @venue_link = data["venue_link"]
-    @venue_time_zone_id = data["venue_time_zone_id"]
-    @venue_time_zone_offset = data["venue_time_zone_offset"]
-    @venue_time_zone_tz = data["venue_time_zone_tz"]
+    #@home_rink_side_start = data["home_rink_side_start"]
+    #@venue = data["venue"]
+    #@venue_link = data["venue_link"]
+    #@venue_time_zone_id = data["venue_time_zone_id"]
+    #@venue_time_zone_offset = data["venue_time_zone_offset"]
+    #@venue_time_zone_tz = data["venue_time_zone_tz"]
   end
 end

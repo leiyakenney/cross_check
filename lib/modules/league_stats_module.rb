@@ -1,5 +1,10 @@
 module LeagueStats
 
+  def convert_id_to_name(id)
+    team = @teams.find {|team| team.team_id == id}
+    team.team_name
+  end
+
   def home_away_team_goals
     goals_home_away = {:hg => Hash.new(0), :ag => Hash.new(0)}
     @games.each do |game|

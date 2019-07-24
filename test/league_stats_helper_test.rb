@@ -15,13 +15,6 @@ class LeagueStatsHelperTest < Minitest::Test
     @tracker = StatTracker.from_csv(@file_names)
   end
 
-  def test_home_away_games_played
-    expected_hg = {"6"=>5, "3"=>2, "5"=>2, "16"=>4, "17"=>3, "8"=>2, "9"=>1}
-    assert_equal expected_hg, @tracker.home_away_games_played[:hg]
-    expected_ag = {"3"=>3, "6"=>4, "5"=>2, "17"=>4, "16"=>3, "9"=>2, "8"=>1}
-    assert_equal expected_ag, @tracker.home_away_games_played[:ag]
-  end
-
   def test_total_games_played
     expected = {"3"=>5, "6"=>9, "5"=>4, "17"=>7, "16"=>7, "9"=>3, "8"=>3}
     assert_equal expected, @tracker.total_games_played
@@ -34,17 +27,9 @@ class LeagueStatsHelperTest < Minitest::Test
     assert_equal expected_ag, @tracker.home_away_team_goals[:ag]
   end
 
-  def test_total_goals_games_gt
-    expected_tgo = {"3"=>10.0, "6"=>28.0, "5"=>2.0, "17"=>1.0}
-    assert_equal expected_tgo, @tracker.total_goals_games_gt[:tgo]
-    expected_tga = {"3"=>5, "6"=>9, "5"=>4, "17"=>1}
-    assert_equal expected_tga, @tracker.total_goals_games_gt[:tga]
-  end
 
-  def test_average_offense
-    expected = {"3"=>2.0, "6"=>3.11, "5"=>0.5, "17"=>1.0}
-    assert_equal expected, @tracker.average_offense
-  end
+
+
 
   def test_home_away_goals_against
     expected_hga = {"6"=>6, "3"=>5, "5"=>9, "16"=>7, "17"=>5, "8"=>5, "9"=>1}
